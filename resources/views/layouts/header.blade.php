@@ -12,6 +12,8 @@
     <title>@yield('title', 'Trang chủ') </title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <meta name="keywords" content="Cập nhật sau">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -639,20 +641,29 @@
                                 </g>
                             </svg>
                             <ul>
-
-                                <li>
-                                    <a href="{{ route('register') }}" title="Đăng ký">
-                                        Đăng ký
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('login') }}" title="Đăng nhập">
-                                        Đăng nhập
-                                    </a>
-                                </li>
-
+                                @if (Auth::check())
+                                    <li>
+                                        <a href="{{ route('logout') }}" title="Đăng Xuất">
+                                            Đăng Xuất
+                                        </a>
+                                    </li>
+                                    <strong>{{ Auth::user()->name }}</strong>
+                                @else
+                                    <li>
+                                        <a href="{{ route('register') }}" title="Đăng ký">
+                                            Đăng ký
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('login') }}" title="Đăng nhập">
+                                            Đăng nhập
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
+
                         </li>
+                       
 
                         <li class="header-wishlist d-lg-flex d-none">
                             <a title="Sản phẩm yêu thích" href="{{ route('favourite') }}"
@@ -1546,7 +1557,7 @@
 
 
                             <li class="nav-item  ">
-                                <a class="a-img" href="/tin-tuc" title="Tin tức">
+                                <a class="a-img" href="{{ route('news') }}" title="Tin tức">
                                     Tin tức
                                 </a>
                             </li>

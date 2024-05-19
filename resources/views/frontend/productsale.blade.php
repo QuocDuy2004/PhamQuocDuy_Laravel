@@ -378,102 +378,9 @@
                     </div>
                     <div class="swiper-slide">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <form action="cart/add" method="post" class="variants product-action" data-cart-form data-id="product-actions-31449180" enctype="multipart/form-data">
                             <div class="product-thumbnail">
-                                <a class="image_thumb scale_hover" href="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" title="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE">
+                                <a class="image_thumb scale_hover" href="chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" title="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE">
                                     <img width="234" height="234" class="lazyload image1" src="assets/100/487/743/themes/912230/assets/lazy.png?1710378319730" data-src="assets/thumb/large/100/487/743/products/t063-617-36-037-00-699x699.png?v=1687058742513" alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE">
 
                                 </a>
@@ -503,13 +410,13 @@
                                 <div class="action">
 
 
-                                    <a title="Xem nhanh" href="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" data-handle="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" class="quick-view btn-views">
+                                    <a title="Xem nhanh" href="chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" data-handle="/chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" class="quick-view btn-views">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path fill="#fff" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
                                         </svg>
                                     </a>
 
-                                    <a href="javascript:void(0)" class="setWishlist btn-wishlist btn-views" data-wish="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" tabindex="0" title="Thêm vào yêu thích">
+                                    <a href="javascript:void(0)" class="setWishlist btn-wishlist btn-views" data-wish="/chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" tabindex="0" title="Thêm vào yêu thích">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path fill="#ffffff" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z">
                                             </path>
@@ -564,7 +471,7 @@
 
 
 
-                                <h3 class="product-name"><a class="line-clamp line-clamp-2" href="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" title="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE">TISSOT
+                                <h3 class="product-name"><a class="line-clamp line-clamp-2" href="chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire" title="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE">TISSOT
                                         TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM,
                                         CHRONOGRAPH, KÍNH SAPPHIRE</a></h3>
                                 <div class="price-box">
@@ -666,7 +573,7 @@
 
                         <form action="cart/add" method="post" class="variants product-action" data-cart-form data-id="product-actions-31449259" enctype="multipart/form-data">
                             <div class="product-thumbnail">
-                                <a class="image_thumb scale_hover" href="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" title="G-SHOCK GA-2000-1A2DR – NAM – KÍNH CỨNG – QUARTZ (PIN) – MẶT SỐ 51.2MM, BỘ BẤM GIỜ, CHỐNG NƯỚC 20ATM">
+                                <a class="image_thumb scale_hover" href="chi-tiet-san-pham/g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" title="G-SHOCK GA-2000-1A2DR – NAM – KÍNH CỨNG – QUARTZ (PIN) – MẶT SỐ 51.2MM, BỘ BẤM GIỜ, CHỐNG NƯỚC 20ATM">
                                     <img width="234" height="234" class="lazyload image1" src="assets/100/487/743/themes/912230/assets/lazy.png?1710378319730" data-src="assets/thumb/large/100/487/743/products/53-ga-2000-1a2dr-699x699.png?v=1687059536243" alt="G-SHOCK GA-2000-1A2DR – NAM – KÍNH CỨNG – QUARTZ (PIN) – MẶT SỐ 51.2MM, BỘ BẤM GIỜ, CHỐNG NƯỚC 20ATM">
 
                                 </a>
@@ -695,13 +602,13 @@
                                     <button class="btn-cart btn-views add_to_cart " title="Mua ngay">
                                         Mua ngay
                                     </button>
-                                    <a title="Xem nhanh" href="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" data-handle="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" class="quick-view btn-views">
+                                    <a title="Xem nhanh" href="chi-tiet-san-pham/g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" data-handle="/chi-tiet-san-pham/g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" class="quick-view btn-views">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path fill="#fff" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
                                         </svg>
                                     </a>
 
-                                    <a href="javascript:void(0)" class="setWishlist btn-wishlist btn-views" data-wish="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" tabindex="0" title="Thêm vào yêu thích">
+                                    <a href="javascript:void(0)" class="setWishlist btn-wishlist btn-views" data-wish="/chi-tiet-san-pham/g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" tabindex="0" title="Thêm vào yêu thích">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path fill="#ffffff" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z">
                                             </path>
@@ -752,7 +659,7 @@
 
 
 
-                                <h3 class="product-name"><a class="line-clamp line-clamp-2" href="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" title="G-SHOCK GA-2000-1A2DR – NAM – KÍNH CỨNG – QUARTZ (PIN) – MẶT SỐ 51.2MM, BỘ BẤM GIỜ, CHỐNG NƯỚC 20ATM">G-SHOCK
+                                <h3 class="product-name"><a class="line-clamp line-clamp-2" href="chi-tiet-san-pham/g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm" title="G-SHOCK GA-2000-1A2DR – NAM – KÍNH CỨNG – QUARTZ (PIN) – MẶT SỐ 51.2MM, BỘ BẤM GIỜ, CHỐNG NƯỚC 20ATM">G-SHOCK
                                         GA-2000-1A2DR – NAM – KÍNH CỨNG – QUARTZ (PIN) – MẶT SỐ 51.2MM, BỘ BẤM
                                         GIỜ, CHỐNG NƯỚC 20ATM</a></h3>
                                 <div class="price-box">
@@ -854,7 +761,7 @@
 
                         <form action="cart/add" method="post" class="variants product-action" data-cart-form data-id="product-actions-31449269" enctype="multipart/form-data">
                             <div class="product-thumbnail">
-                                <a class="image_thumb scale_hover" href="seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" title="SEIKO 5 FIELD SPORTS STYLE SRPG33K1 – NAM – AUTOMATIC (TỰ ĐỘNG) – MẶT SỐ 39.4MM, CHỐNG NƯỚC 10ATM, BỘ MÁY IN-HOUSE">
+                                <a class="image_thumb scale_hover" href="chi-tiet-san-pham/seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" title="SEIKO 5 FIELD SPORTS STYLE SRPG33K1 – NAM – AUTOMATIC (TỰ ĐỘNG) – MẶT SỐ 39.4MM, CHỐNG NƯỚC 10ATM, BỘ MÁY IN-HOUSE">
                                     <img width="234" height="234" class="lazyload image1" src="assets/100/487/743/themes/912230/assets/lazy.png?1710378319730" data-src="assets/thumb/large/100/487/743/products/srpg33k1-699x699.png?v=1687059618537" alt="SEIKO 5 FIELD SPORTS STYLE SRPG33K1 – NAM – AUTOMATIC (TỰ ĐỘNG) – MẶT SỐ 39.4MM, CHỐNG NƯỚC 10ATM, BỘ MÁY IN-HOUSE">
 
                                 </a>
@@ -883,13 +790,13 @@
                                     <button class="btn-cart btn-views add_to_cart " title="Mua ngay">
                                         Mua ngay
                                     </button>
-                                    <a title="Xem nhanh" href="seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" data-handle="seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" class="quick-view btn-views">
+                                    <a title="Xem nhanh" href="chi-tiet-san-pham/seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" data-handle="/chi-tiet-san-pham/seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" class="quick-view btn-views">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path fill="#fff" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
                                         </svg>
                                     </a>
 
-                                    <a href="javascript:void(0)" class="setWishlist btn-wishlist btn-views" data-wish="seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" tabindex="0" title="Thêm vào yêu thích">
+                                    <a href="javascript:void(0)" class="setWishlist btn-wishlist btn-views" data-wish="/chi-tiet-san-pham/seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" tabindex="0" title="Thêm vào yêu thích">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path fill="#ffffff" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z">
                                             </path>
@@ -940,7 +847,7 @@
 
 
 
-                                <h3 class="product-name"><a class="line-clamp line-clamp-2" href="seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" title="SEIKO 5 FIELD SPORTS STYLE SRPG33K1 – NAM – AUTOMATIC (TỰ ĐỘNG) – MẶT SỐ 39.4MM, CHỐNG NƯỚC 10ATM, BỘ MÁY IN-HOUSE">SEIKO
+                                <h3 class="product-name"><a class="line-clamp line-clamp-2" href="chi-tiet-san-pham/seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house" title="SEIKO 5 FIELD SPORTS STYLE SRPG33K1 – NAM – AUTOMATIC (TỰ ĐỘNG) – MẶT SỐ 39.4MM, CHỐNG NƯỚC 10ATM, BỘ MÁY IN-HOUSE">SEIKO
                                         5 FIELD SPORTS STYLE SRPG33K1 – NAM – AUTOMATIC (TỰ ĐỘNG) – MẶT SỐ
                                         39.4MM, CHỐNG NƯỚC 10ATM, BỘ MÁY IN-HOUSE</a></h3>
                                 <div class="price-box">

@@ -1292,7 +1292,7 @@
                                     data-id="product-actions-31449180" enctype="multipart/form-data">
                                     <div class="product-thumbnail">
                                         <a class="image_thumb scale_hover"
-                                            href="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
+                                            href="/chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
                                             title="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE">
                                             <img width="234" height="234" class="lazyload image1"
                                                 src="assets/100/487/743/themes/912230/assets/lazy.png?1710378319730"
@@ -1319,8 +1319,8 @@
 
 
                                             <a title="Xem nhanh"
-                                                href="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
-                                                data-handle="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
+                                                href="/chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
+                                                data-handle="/chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
                                                 class="quick-view btn-views">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path fill="#fff"
@@ -1329,7 +1329,7 @@
                                             </a>
 
                                             <a href="javascript:void(0)" class="setWishlist btn-wishlist btn-views"
-                                                data-wish="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
+                                                data-wish="/chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
                                                 tabindex="0" title="Thêm vào yêu thích">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path fill="#ffffff"
@@ -1361,7 +1361,7 @@
 
                                     <div class="product-info">
                                         <h3 class="product-name"><a class="line-clamp line-clamp-2"
-                                                href="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
+                                                href="/chi-tiet-san-pham/tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
                                                 title="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE">TISSOT
                                                 TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42
                                                 MM, CHRONOGRAPH, KÍNH SAPPHIRE</a></h3>

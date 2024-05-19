@@ -92,7 +92,7 @@
                                             </div>
                                             <div class="info">
                                                 <b>Hotline</b>
-                                                <a title="1900 6750" href="tel:19006750">1900 6750</a>
+                                                <a title="0828255501" href="tel:19006750">0828255501</a>
                                             </div>
                                         </li>
                                         <li>
@@ -106,7 +106,7 @@
                                             </div>
                                             <div class="info">
                                                 <b>Email</b>
-                                                <a title="support@sapo.vn" href="mailto:support@sapo.vn">support@sapo.vn</a>
+                                                <a title="support@duymedia.vn" href="mailto:support@duymedia.vn">support@duymedia.vn</a>
                                             </div>
                                         </li>
 

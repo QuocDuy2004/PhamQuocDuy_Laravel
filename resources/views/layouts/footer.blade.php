@@ -844,7 +844,7 @@
         </button>
         <ul class="addThis_listing">
             <li class="addThis_item">
-                <a class="addThis_item--icon" href="tel:19006750" rel="nofollow" aria-label="phone">
+                <a class="addThis_item--icon" href="tel:0828255501" rel="nofollow" aria-label="phone">
                     <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="22" cy="22" r="22" fill="url(#paint2_linear)"></circle>
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1030,6 +1030,24 @@
         $(".popup-sapo").toggleClass("active");
     });
 </script>
+<!--EYE LOGIN-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordField = document.getElementById('customer_password');
+        const eyeIcon = document.getElementById('eye-icon');
+        
+        eyeIcon.addEventListener('click', function() {
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"></path><path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"></path></svg>`;
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>`;
+            }
+        });
+    });
+</script>
+
 <a target="_blank" class="livechat-mes" href="https://m.me/submevn">
     <img src="{{ asset('assets/100/485/241/themes/911577/assets/messenger.svg?1705567372895') }}" alt="Messenger">
 </a>

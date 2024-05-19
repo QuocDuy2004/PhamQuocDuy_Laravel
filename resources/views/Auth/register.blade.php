@@ -41,85 +41,80 @@
 
                                             <ul class="auth-block__menu-list">
                                                 <li>
-                                                    <a href="login.php" title="Đăng nhập">Đăng nhập</a>
+                                                    <a href="{{ route('login') }}" title="Đăng nhập">Đăng nhập</a>
                                                 </li>
                                                 <li class="active">
-                                                    <a href="register.php" title="Đăng ký">Đăng ký</a>
+                                                    <a href="{{ route('register') }}" title="Đăng ký">Đăng ký</a>
                                                 </li>
                                             </ul>
                                             <h1 class="title_heads a-center"><span>Đăng ký</span></h1>
                                             <div id="login" class="section">
-                                                <form method="post" action="/account/register" id="customer_register"
-                                                    accept-charset="UTF-8"><input name="FormType" type="hidden"
-                                                        value="customer_register"><input name="utf8" type="hidden"
-                                                        value="true"><input type="hidden"
-                                                        id="Token-aa7fb4cf31944d789e8fa4d3c637412f" name="Token"
-                                                        value="03AFcWeA7HMcYalmTZov6wIVb_UieirWgKAB6dS5CtqanbYapBueHoKmwp2x2P35DAyvLmaVajXcT3vdO1hKzp79yar7rjURI-Go_dR3GdYxqqhZL90_nyASuuMWHCEa7BF8B6notyyDXC5OuHTsD0-fCBRhmNz-Xcx4ET1HkCD6DFrfih-TaIKpbuzyZG3XClDYswvC2qp02bDWI-4gj9KY1NhTbeXexAHkmr12SKKLCWk_yr7Xuloadyhugq8WJx6cTx9QTrk_ZkoocmN3LITuuL5ehaieLZefTFl-wRchOWf2jBtbf6ZYcIJUzOVqpFaTJThFOEEWWlBlz7WGFSKxa3Ej8DAdKLz253_zxW0XQsk3BP7glzKCFAkND4TXrRDd7AkRDPEx_AvPwKzTI7yzYn62tFDGlsGLcZLMyNhWIdpkT62p1F4yMcvmryMSEknqiM-fgj3AnKqnaCkmAOGZ4CzalOdwyV6qnI3nK-Np3yikC9DsazYIwhUDv_8WxDS7Wy65uurLgJLe2SZQZTCqwAYVtDqbxxFAEn537qLXsNnFyDFVvKveQGopFIgt7ChDGUZv7cZWwGxluDcSvZY_Bm_-Zxtr5Cr9VR_qIaPIbl7rs-UBJNpX3RWDG2TO3ZYUsXkQWRDtLVA_rG7LQP-Jei-DEITiOX_r6bzA651VrZ0D2cp2LUs5s">
-                                                    <script src="https://www.google.com/recaptcha/api.js?render=6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK"></script>
-                                                    <script>
-                                                        grecaptcha.ready(function() {
-                                                            grecaptcha.execute("6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK", {
-                                                                action: "customer_register"
-                                                            }).then(function(token) {
-                                                                document.getElementById("Token-aa7fb4cf31944d789e8fa4d3c637412f").value = token
-                                                            });
-                                                        });
-                                                    </script>
-                                                    <div class="form-signup " style="color:red;">
-
-                                                    </div>
-                                                    <div class="form-signup clearfix">
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                                                <fieldset class="form-group">
-                                                                    <input type="text"
-                                                                        class="form-control form-control-lg" value=""
-                                                                        name="lastName" id="lastName" placeholder="Họ"
-                                                                        required="">
-                                                                </fieldset>
-                                                            </div>
-                                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                                                <fieldset class="form-group">
-                                                                    <input type="text"
-                                                                        class="form-control form-control-lg" value=""
-                                                                        name="firstName" id="firstName" placeholder="Tên"
-                                                                        required="">
-                                                                </fieldset>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                                                <fieldset class="form-group">
-                                                                    <input type="email"
-                                                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
-                                                                        class="form-control form-control-lg" value=""
-                                                                        name="email" id="email" placeholder="Email"
-                                                                        required="">
-                                                                </fieldset>
-                                                            </div>
-                                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                                                <fieldset class="form-group">
-                                                                    <input placeholder="Số điện thoại" type="text"
-                                                                        pattern="\d+"
-                                                                        class="form-control form-control-comment form-control-lg"
-                                                                        name="PhoneNumber" required="">
-                                                                </fieldset>
-                                                            </div>
-                                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                                                <fieldset class="form-group">
-                                                                    <input type="password"
-                                                                        class="form-control form-control-lg" value=""
-                                                                        name="password" id="password"
-                                                                        placeholder="Mật khẩu" required="">
-                                                                </fieldset>
-                                                            </div>
-                                                        </div>
-                                                        <div class="section">
-                                                            <button type="submit" value="Đăng ký"
-                                                                class="btn  btn-style btn_50">Đăng ký</button>
+                                            @if (Session::has('error'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ Session::get('error') }}
+                                                </div>
+                                            @endif
+                                            
+                                            @if (Session::has('success'))
+                                                <div class="alert alert-success" role="alert">
+                                                    {{ Session::get('success') }}
+                                                </div>
+                                            @endif
+                                                <form action="{{ route('register.post') }}" method="POST">
+                                                    @csrf
+                                                    <div class="mb-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" name="name" class="form-control"
+                                                                value="{{ old('name') }}" placeholder="Họ và tên"
+                                                                required>
+                                                            <label for="">Họ và tên</label>
                                                         </div>
                                                     </div>
+                                                    <div class="mb-3">
+                                                        <div class="form-floating">
+                                                            <input type="email" name="email" class="form-control"
+                                                                value="{{ old('email') }}" placeholder="Email" required>
+                                                            <label for="">Địa chỉ Email</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="form-floating">
+                                                            <input type="phone" name="phone" class="form-control"
+                                                                value="{{ old('phone') }}" placeholder="Phone" required>
+                                                            <label for="">Số điện thoại</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" name="username" class="form-control"
+                                                                value="{{ old('username') }}" placeholder="Username"
+                                                                required>
+                                                            <label for="">Tài khoản</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="form-floating">
+                                                            <input type="password" name="password" class="form-control"
+                                                                placeholder="Password" required>
+                                                            <label for="">Mật khẩu</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="form-floating">
+                                                            <input type="password" name="password_confirmation"
+                                                                class="form-control" placeholder="Confirm Password"
+                                                                required>
+                                                            <label for="">Nhập lại mật khẩu</label>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn m-main w-100">ĐĂNG KÝ TÀI KHOẢN</button>
+                                                    <div class="text-center font-weight-bold p-2">hoặc</div>
+                                                    <a href="{{ route('login') }}"
+                                                        class="btn btn-success btn-outline-success w-100">ĐĂNG NHẬP TẠI
+                                                        ĐÂY</a>
                                                 </form>
+
+
                                                 <div class="block social-login--facebooks margin-top-15">
                                                     <p class="a-center">
                                                         Hoặc đăng nhập bằng

@@ -39,18 +39,32 @@
                                     <div class="wpx">
                                         <ul class="auth-block__menu-list">
                                             <li class="active">
-                                                <a href="#" title="Đăng nhập">Đăng nhập</a>
+                                                <a href="{{ route('login') }}" title="Đăng nhập">Đăng nhập</a>
                                             </li>
                                             <li>
-                                                <a href="register.php" title="Đăng ký">Đăng ký</a>
+                                                <a href="{{ route('register') }}" title="Đăng ký">Đăng ký</a>
                                             </li>
                                         </ul>
                                         <h1 class="title_heads a-center"><span>Đăng nhập</span></h1>
                                         <div id="login" class="section">
-                                            <form method="post" action="login.php" id="customer_login"
-                                                accept-charset="UTF-8"><input name="FormType" type="hidden"
-                                                    value="customer_login"><input name="utf8" type="hidden"
-                                                    value="true">
+
+                                            @if ($message = Session::get('error'))
+                                            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                {{ $message }}
+                                            </div>
+                                            @endif
+                                            @if ($message = Session::get('success'))
+                                            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                {{ $message }}
+                                            </div>
+                                            @endif
+                                            
+                                            <form method="post" action="{{ route('login.post') }}">
+                                                @csrf
+                                                <input name="FormType" type="hidden" value="customer_login"><input
+                                                    name="utf8" type="hidden" value="true">
                                                 <span class="form-signup" style="color:red;">
 
                                                 </span>
@@ -63,10 +77,25 @@
                                                             required="">
                                                     </fieldset>
                                                     <fieldset class="form-group">
-                                                        <input type="password" class="form-control form-control-lg"
-                                                            value="" name="password" id="customer_password"
-                                                            placeholder="Mật khẩu" required="">
+                                                        <div style="position: relative;">
+                                                            <input type="password" class="form-control form-control-lg"
+                                                                value="" name="password" id="customer_password"
+                                                                placeholder="Mật khẩu" required="">
+                                                            <span id="eye-icon" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"></path>
+                                                                    <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"></path>
+                                                                </svg>
+                                                            </span>
+                                                        </div>
                                                     </fieldset>
+                                                    
+                                        
+                                                    <div class="text-end">
+                                                        <label for="remember">
+                                                            Ghi nhớ <input type="checkbox" id="remember">
+                                                        </label>
+                                                    </div>
                                                     <div class="pull-xs-left">
                                                         <input class="btn btn-style btn_50" type="submit"
                                                             value="Đăng nhập">
@@ -107,51 +136,11 @@
                                             <p class="a-center">
                                                 Hoặc đăng nhập bằng
                                             </p>
-                                            <script>
-                                                function loginFacebook() {
-                                                    var a = {
-                                                            client_id: "947410958642584",
-                                                            redirect_uri: "https://store.mysapo.net/account/facebook_account_callback",
-                                                            state: JSON.stringify({
-                                                                redirect_url: window.location.href
-                                                            }),
-                                                            scope: "email",
-                                                            response_type: "code"
-                                                        },
-                                                        b = "https://www.facebook.com/v3.2/dialog/oauth" + encodeURIParams(a, !0);
-                                                    window.location.href = b
-                                                }
-
-                                                function loginGoogle() {
-                                                    var a = {
-                                                            client_id: "997675985899-pu3vhvc2rngfcuqgh5ddgt7mpibgrasr.apps.googleusercontent.com",
-                                                            redirect_uri: "https://store.mysapo.net/account/google_account_callback",
-                                                            scope: "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
-                                                            access_type: "online",
-                                                            state: JSON.stringify({
-                                                                redirect_url: window.location.href
-                                                            }),
-                                                            response_type: "code"
-                                                        },
-                                                        b = "https://accounts.google.com/o/oauth2/v2/auth" + encodeURIParams(a, !0);
-                                                    window.location.href = b
-                                                }
-
-                                                function encodeURIParams(a, b) {
-                                                    var c = [];
-                                                    for (var d in a)
-                                                        if (a.hasOwnProperty(d)) {
-                                                            var e = a[d];
-                                                            null != e && c.push(encodeURIComponent(d) + "=" + encodeURIComponent(e))
-                                                        } return 0 == c.length ? "" : (b ? "?" : "") + c.join("&")
-                                                }
-                                            </script>
                                             <a href="javascript:void(0)" class="social-login--facebook"
-                                                onclick="loginFacebook()"><img width="129px" height="37px"
+                                                onclick=""><img width="129px" height="37px"
                                                     alt="facebook-login-button"
                                                     src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg"></a>
-                                            <a href="javascript:void(0)" class="social-login--google"
-                                                onclick="loginGoogle()"><img width="129px" height="37px"
+                                            <a href="{{ route('login.google') }}" class="social-login--google"><img width="129px" height="37px"
                                                     alt="google-login-button"
                                                     src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
                                         </div>

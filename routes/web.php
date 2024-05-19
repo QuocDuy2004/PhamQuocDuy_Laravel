@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth\AuthClientController;
 
 use App\Http\Controllers\frontend\UserController;
+use App\Http\Controllers\Auth\RegisterController;
 
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\IntroduceController;
@@ -20,6 +23,7 @@ use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\ProductController;
 use App\Http\Controllers\frontend\ProductDetailController;
 use Illuminate\Support\Facades\Route;
+
 
 //User
 
@@ -44,10 +48,32 @@ Route::get('/gio-hang', [CartController::class, 'Cart'])->name('cart');
 //Favourite
 Route::get('/san-pham-yeu-thich', [FavouriteController::class, 'Favourite'])->name('favourite');
 
-//Account
-Route::get('/auth/login', [AuthController::class, 'Login'])->name('login');
-Route::get('/auth/register', [AuthController::class, 'Register'])->name('register');
-Route::get('/auth/forgot', [AuthController::class, 'Forgot'])->name('forgot');
+Route::get('/logout', [AuthClientController::class, 'Logout'])->name('logout');
+Route::prefix('/auth')->middleware('guest')->group(function () {
+    Route::get('/login', [AuthClientController::class, 'LoginPage'])->name('login');
+    Route::post('/login', [AuthClientController::class, 'Login'])->name('login.post');
+    Route::get('/register', [AuthClientController::class, 'RegisterPage'])->name('register');
+    Route::post('/register', [AuthClientController::class, 'Register'])->name('register.post');
+    // Route::get('/forgot-password', [AuthClientController::class, 'ForgotPasswordPage'])->name('forgot.password');
+    // Route::post('/forgot-password', [AuthClientController::class, 'ForgotPassword'])->name('forgot.password.post');
+    // Route::get('/reset-password/{token}', [AuthClientController::class, 'ResetPasswordPage'])->name('reset.password');
+    // Route::post('/reset-password/{token}', [AuthClientController::class, 'ResetPassword'])->name('reset.password.post');
+
+    //login google
+    Route::get('/login/google', [AuthClientController::class, 'LoginGoogle'])->name('login.google');
+    Route::get('/login/google/callback', [AuthClientController::class, 'LoginGoogleCallback'])->name('login.google.callback');
+
+
+    // // login facebook
+    // Route::get('/login/facebook', [AuthClientController::class, 'LoginFacebook'])->name('login.facebook');
+    // Route::get('/login/facebook/callback', [AuthClientController::class, 'LoginFacebookCallback'])->name('login.facebook.callback');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/home', function () {
+        return view('home'); // Đảm bảo rằng bạn có view 'home'
+    })->name('home');
+});
+
 
 //Error 404
 Route::get('/404', [ErrorController::class, 'Error'])->name('error');
