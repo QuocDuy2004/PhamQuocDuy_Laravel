@@ -40,8 +40,8 @@ Route::get('/gioi-thieu', [IntroduceController::class, 'Introduce'])->name('intr
 Route::get('/tin-tuc', [NewsController::class, 'News'])->name('news');
 
 //Product
-Route::get('san-pham', [ProductController::class, 'Product']);
-Route::get('chi-tiet-san-pham/{slug}', [ProductDetailController::class, 'ProductDetail']);
+Route::get('/san-pham', [ProductController::class, 'Product']);
+Route::get('/chi-tiet-san-pham/{slug}', [ProductDetailController::class, 'ProductDetail']);
 Route::get('/lien-he', [ContactController::class, 'Contact'])->name('contact');
 //Cart
 Route::get('/gio-hang', [CartController::class, 'Cart'])->name('cart');
@@ -54,10 +54,10 @@ Route::prefix('/auth')->middleware('guest')->group(function () {
     Route::post('/login', [AuthClientController::class, 'Login'])->name('login.post');
     Route::get('/register', [AuthClientController::class, 'RegisterPage'])->name('register');
     Route::post('/register', [AuthClientController::class, 'Register'])->name('register.post');
-    // Route::get('/forgot-password', [AuthClientController::class, 'ForgotPasswordPage'])->name('forgot.password');
-    // Route::post('/forgot-password', [AuthClientController::class, 'ForgotPassword'])->name('forgot.password.post');
-    // Route::get('/reset-password/{token}', [AuthClientController::class, 'ResetPasswordPage'])->name('reset.password');
-    // Route::post('/reset-password/{token}', [AuthClientController::class, 'ResetPassword'])->name('reset.password.post');
+    Route::get('/forgot-password', [AuthClientController::class, 'ForgotPage'])->name('forgot.password');
+    Route::post('/forgot-password', [AuthClientController::class, 'ForgotPassword'])->name('forgot.password.post');
+    Route::get('/reset-password/{token}', [AuthClientController::class, 'ResetPasswordPage'])->name('reset.password');
+    Route::post('/reset-password/{token}', [AuthClientController::class, 'ResetPassword'])->name('reset.password.post');
 
     //login google
     Route::get('/login/google', [AuthClientController::class, 'LoginGoogle'])->name('login.google');
@@ -65,13 +65,8 @@ Route::prefix('/auth')->middleware('guest')->group(function () {
 
 
     // // login facebook
-    // Route::get('/login/facebook', [AuthClientController::class, 'LoginFacebook'])->name('login.facebook');
-    // Route::get('/login/facebook/callback', [AuthClientController::class, 'LoginFacebookCallback'])->name('login.facebook.callback');
-});
-Route::middleware('auth')->group(function () {
-    Route::get('/home', function () {
-        return view('home'); // Đảm bảo rằng bạn có view 'home'
-    })->name('home');
+    Route::get('/login/facebook', [AuthClientController::class, 'LoginFacebook'])->name('login.facebook');
+    Route::get('/login/facebook/callback', [AuthClientController::class, 'LoginFacebookCallback'])->name('login.facebook.callback');
 });
 
 

@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->boolean('status')->default(true);
+            $table->string('status')->default(true);
             $table->rememberToken();
             $table->timestamps(); // Automatically adds created_at and updated_at columns
         });

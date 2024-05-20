@@ -60,59 +60,53 @@
                                                     {{ Session::get('success') }}
                                                 </div>
                                             @endif
-                                                <form action="{{ route('register.post') }}" method="POST">
-                                                    @csrf
-                                                    <div class="mb-3">
-                                                        <div class="form-floating">
-                                                            <input type="text" name="name" class="form-control"
-                                                                value="{{ old('name') }}" placeholder="Họ và tên"
-                                                                required>
-                                                            <label for="">Họ và tên</label>
+                                            <form method="post" action="{{ route('register.post') }}">
+                                                @csrf
+                                                <input name="FormType" type="hidden" value="customer_register"><input
+                                                    name="utf8" type="hidden" value="true">
+                                                <span class="form-signup" style="color:red;">
+
+                                                </span>
+                                                <div class="form-signup clearfix">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <fieldset class="form-group">
+                                                                <input type="text" class="form-control form-control-lg" value="{{ old('name') }}" name="name" id="name" placeholder="Họ" required="">
+                                                            </fieldset>
                                                         </div>
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <div class="form-floating">
-                                                            <input type="email" name="email" class="form-control"
-                                                                value="{{ old('email') }}" placeholder="Email" required>
-                                                            <label for="">Địa chỉ Email</label>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <fieldset class="form-group">
+                                                                <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" class="form-control form-control-lg" value="{{ old('email') }}" name="email" id="email" placeholder="Địa chỉ Email" required="">
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <fieldset class="form-group">
+                                                                <input placeholder="Số điện thoại" type="phone" pattern="\d+" class="form-control form-control-comment form-control-lg" value="{{ old('phone') }}" name="phone" required="">
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <fieldset class="form-group">
+                                                                <input placeholder="Tài khoản" type="text" class="form-control form-control-comment form-control-lg" value="{{ old('username') }}" name="username" required="">
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <fieldset class="form-group">
+                                                                <input type="password" class="form-control form-control-lg" value="" name="password" id="password" placeholder="Mật khẩu nhập lại" required="">
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <fieldset class="form-group">
+                                                                <input type="password" class="form-control form-control-lg" value="" name="password_confirmation" id="password" placeholder="Mật khẩu" required="">
+                                                            </fieldset>
                                                         </div>
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <div class="form-floating">
-                                                            <input type="phone" name="phone" class="form-control"
-                                                                value="{{ old('phone') }}" placeholder="Phone" required>
-                                                            <label for="">Số điện thoại</label>
-                                                        </div>
+                                                    <div class="section">
+                                                        <button type="submit" value="Đăng ký" class="btn  btn-style btn_50">Đăng ký</button>
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <div class="form-floating">
-                                                            <input type="text" name="username" class="form-control"
-                                                                value="{{ old('username') }}" placeholder="Username"
-                                                                required>
-                                                            <label for="">Tài khoản</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <div class="form-floating">
-                                                            <input type="password" name="password" class="form-control"
-                                                                placeholder="Password" required>
-                                                            <label for="">Mật khẩu</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <div class="form-floating">
-                                                            <input type="password" name="password_confirmation"
-                                                                class="form-control" placeholder="Confirm Password"
-                                                                required>
-                                                            <label for="">Nhập lại mật khẩu</label>
-                                                        </div>
-                                                    </div>
-                                                    <button class="btn m-main w-100">ĐĂNG KÝ TÀI KHOẢN</button>
-                                                    <div class="text-center font-weight-bold p-2">hoặc</div>
-                                                    <a href="{{ route('login') }}"
-                                                        class="btn btn-success btn-outline-success w-100">ĐĂNG NHẬP TẠI
-                                                        ĐÂY</a>
-                                                </form>
+                                                </div>
+                                            </form>
 
 
                                                 <div class="block social-login--facebooks margin-top-15">

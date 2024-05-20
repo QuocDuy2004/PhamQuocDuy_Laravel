@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Expr\Throw_;
 use Illuminate\Validation\ValidationException;
+use App\Mail\MailForgotPassword;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Models\PasswordReset;
 use Throwable;
 
 class AuthClientController extends Controller
@@ -30,37 +34,76 @@ class AuthClientController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+    public function LoginFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
     public function ForgotPage()
     {
-        return view('Auth.forgot');
+        return view('auth.forgot'); // Đảm bảo bạn có view 'auth.forgot'
     }
+
+
+    public function LoginFacebookCallback(Request $request)
+    {
+        try {
+            $facebookUser = Socialite::driver('facebook')->user();
+            $user = User::updateOrCreate(
+                ['email' => $facebookUser->getEmail()],
+                [
+                    'name' => $facebookUser->getName(),
+                    'username' => $facebookUser->getId(),
+                    'password' => Hash::make(Str::random(16)),
+                    'address' => '',
+                    'image' => '',
+                    'roles' => 'customer',
+                    'created_by' => 0,
+                    'status' => 1,
+                ]
+            );
+
+            Auth::login($user);
+
+            return redirect()->route('home')->with('success', 'Đăng nhập thành công');
+        } catch (\Exception $e) {
+            return redirect()->route('login')->with('error', 'Đăng nhập bằng Facebook thất bại: ' . $e->getMessage());
+        }
+    }
+
+
 
     public function LoginGoogleCallback(Request $request)
     {
         try {
             $googleUser = Socialite::driver('google')->user();
-            $existingUser = User::where('email', $googleUser->email)->first();
 
-            if ($existingUser) {
-                // Đăng nhập người dùng hiện có
-                Auth::login($existingUser);
-            } else {
-                // Tạo người dùng mới
-                $newUser = User::create([
+            // Tạo hoặc cập nhật người dùng dựa trên email
+            $user = User::updateOrCreate(
+                ['email' => strtolower($googleUser->email)],
+                [
                     'name' => $googleUser->name,
-                    'email' => strtolower($googleUser->email),
-                    'password' => Hash::make(Str::random(8)), // Tạo mật khẩu ngẫu nhiên
-                    'username' => $googleUser->id, // Sử dụng Google ID làm tên đăng nhập
-                ]);
+                    'username' => $googleUser->id,
+                    'password' => Hash::make(Str::random(16)),
+                    'api_token' => Str::random(60),
+                    'phone' => '',
+                    'address' => '',
+                    'image' => $googleUser->avatar,
+                    'roles' => 'customer',
+                    'created_by' => 0,
+                    'status' => 1
+                ]
+            );
 
-                Auth::login($newUser);
-            }
+            // Đăng nhập người dùng
+            Auth::login($user);
 
             return redirect()->route('home')->with('success', 'Đăng nhập thành công');
         } catch (\Exception $e) {
             return redirect()->route('login')->with('error', 'Đăng nhập bằng Google thất bại: ' . $e->getMessage());
         }
     }
+
+
 
     public function Login(Request $request)
     {
@@ -85,9 +128,9 @@ class AuthClientController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'phone' => ['required', 'string', 'max:255', 'unique:users,phone', 'regex:/^[0-9]{10,11}$/'],
-            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|string|email|max:255|unique:pqd_user,email', // Sửa tên bảng
+            'phone' => ['required', 'string', 'max:255', 'unique:pqd_user,phone', 'regex:/^[0-9]{10,11}$/'], // Sửa tên bảng
+            'username' => 'required|string|max:255|unique:pqd_user,username', // Sửa tên bảng
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required|string|min:8|same:password',
         ]);
@@ -97,22 +140,29 @@ class AuthClientController extends Controller
         }
 
         try {
+            $apiToken = Str::random(32);
+
             $newUser = User::create([
                 'name' => $request->name,
                 'username' => $request->username,
                 'email' => strtolower($request->email),
-                'phone' => strtolower($request->phone),
+                'phone' => $request->phone,
                 'password' => Hash::make($request->password),
-                'password_confirmation' => Hash::make($request->password_confirmation),
+                'api_token' => $apiToken,
+                'address' => '',
+                'image' => '',
+                'roles' => 'customer',
+                'created_by' => 0,
+                'status' => 1,
             ]);
 
             if ($newUser) {
                 return redirect()->route('login')->with('success', 'Đăng ký thành công')->withInput(['username' => $request->username]);
             } else {
-                return redirect()->back()->withErrors('error', 'Đăng ký thất bại')->withInput(['username' => $request->username]);
+                return redirect()->back()->withErrors(['error' => 'Đăng ký thất bại'])->withInput(['username' => $request->username]);
             }
-        } catch (Throwable) {
-            throw ValidationException::withMessages(['error' => 'Đăng ký thất bại. Hãy thử lại vài lần']);
+        } catch (\Throwable $e) {
+            return redirect()->back()->withErrors(['error' => 'Đăng ký thất bại. Hãy thử lại vài lần'])->withInput();
         }
     }
 

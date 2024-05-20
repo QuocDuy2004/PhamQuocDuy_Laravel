@@ -107,37 +107,44 @@
 
                                         <div class="h_recover" style="display:none;">
                                             <div id="recover-password" class="form-signup page-login">
-                                                <form method="post" action="/account/recover"
-                                                    id="recover_customer_password" accept-charset="UTF-8"><input
-                                                        name="FormType" type="hidden"
-                                                        value="recover_customer_password"><input name="utf8"
-                                                        type="hidden" value="true">
+                                                <form method="post" action="{{ route('forgot.password.post') }}" accept-charset="UTF-8">
+                                                    @csrf
                                                     <div class="form-signup" style="color: red;">
-
+                                                        @if ($errors->any())
+                                                            <div class="alert alert-danger">
+                                                                <ul>
+                                                                    @foreach ($errors->all() as $error)
+                                                                        <li>{{ $error }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     <div class="form-signup clearfix">
                                                         <fieldset class="form-group">
                                                             <input type="email"
-                                                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
-                                                                class="form-control form-control-lg" value=""
-                                                                name="Email" id="recover-email" placeholder="Email"
-                                                                required="">
+                                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
+                                                                   class="form-control form-control-lg"
+                                                                   value="{{ old('email') }}"
+                                                                   name="email"
+                                                                   id="recover-email"
+                                                                   placeholder="Email"
+                                                                   required="">
                                                         </fieldset>
                                                     </div>
                                                     <div class="action_bottom">
-                                                        <input class="btn btn-style btn_50" style="margin-top: 0px;"
-                                                            type="submit" value="Lấy lại mật khẩu">
-
+                                                        <input class="btn btn-style btn_50" style="margin-top: 0px;" type="submit" value="Lấy lại mật khẩu">
                                                     </div>
                                                 </form>
+                                                
                                             </div>
                                         </div>
                                         <div class="block social-login--facebooks">
                                             <p class="a-center">
                                                 Hoặc đăng nhập bằng
                                             </p>
-                                            <a href="javascript:void(0)" class="social-login--facebook"
-                                                onclick=""><img width="129px" height="37px"
+                                            <a href="{{ route('login.facebook') }}" class="social-login--facebook"
+                                                ><img width="129px" height="37px"
                                                     alt="facebook-login-button"
                                                     src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg"></a>
                                             <a href="{{ route('login.google') }}" class="social-login--google"><img width="129px" height="37px"

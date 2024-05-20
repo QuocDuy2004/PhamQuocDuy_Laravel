@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('title', 'Trang chủ')
+
 @section('content')
-    @include('frontend.slide')
-    @include('frontend.chinhsach')
-    @include('frontend.productsale')
+<x-slide/>
+<x-chinhsach/>
+    @include('frontend.productsale')    
     @include('frontend.coupon')
-    @include('frontend.productNew')
+    <x-product-new/>
     <div class="bodywrap">
         <h1 class="d-none">Dola Watch - </h1>
 
