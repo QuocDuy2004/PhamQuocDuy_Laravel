@@ -15,7 +15,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'pqd_user';
+    protected $table = 'user';
 
     /**
      * The primary key associated with the table.
@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'username', 'email', 'phone', 'password', 'api_token', 'address', 'image', 'roles', 'created_by', 'status'
+        'name', 'username', 'email', 'phone', 'password','gender', 'api_token', 'address', 'image', 'roles', 'created_by', 'status'
     ];
 
     /**

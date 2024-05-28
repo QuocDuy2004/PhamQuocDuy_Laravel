@@ -2,11 +2,11 @@
 @section('title', 'Trang chủ')
 
 @section('content')
-<x-slide/>
-<x-chinhsach/>
-    @include('frontend.productsale')    
-    @include('frontend.coupon')
-    <x-product-new/>
+    <x-slide />
+    <x-chinhsach />
+    <x-product-sale />
+    <x-coupon />
+    <x-product-new />
     <div class="bodywrap">
         <h1 class="d-none">Dola Watch - </h1>
 
@@ -29,16 +29,9 @@
                 },
             });
         </script>
+        <x-blog />
+        <x-brand />
 
-
-
-        <main>
-            @include('frontend.blog')
-        </main>
-
-        <main>
-            @include('frontend.brand')
-        </main>
     </div>
 @endsection
 @section('script')

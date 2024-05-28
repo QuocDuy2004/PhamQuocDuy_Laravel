@@ -30,6 +30,10 @@ class AuthClientController extends Controller
     {
         return view('Auth.login');
     }
+    public function LoginAdminPage()
+    {
+        return view('Auth.login-admin');
+    }
     public function LoginGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -84,6 +88,7 @@ class AuthClientController extends Controller
                     'name' => $googleUser->name,
                     'username' => $googleUser->id,
                     'password' => Hash::make(Str::random(16)),
+                    'gender' => 1,
                     'api_token' => Str::random(60),
                     'phone' => '',
                     'address' => '',
@@ -148,6 +153,7 @@ class AuthClientController extends Controller
                 'email' => strtolower($request->email),
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
+                'gender' => 1,
                 'api_token' => $apiToken,
                 'address' => '',
                 'image' => '',

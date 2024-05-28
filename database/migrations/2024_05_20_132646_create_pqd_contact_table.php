@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone', 255)->notNullable(); 
             $table->string('title', 255)->notNullable(); 
             $table->mediumText('content')->notNullable(); 
+            $table->mediumText('address')->notNullable(); 
             $table->unsignedInteger('reply_id')->default(0); 
             $table->timestamp('created_at')->notNullable(); 
             $table->timestamp('updated_at')->nullable();

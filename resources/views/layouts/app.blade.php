@@ -1,4 +1,6 @@
-@include('layouts.header')
-@yield('content')
-@include('layouts.footer')
+@extends('layouts.footer')
+@extends('layouts.header')
+
+
+
 
