@@ -15,7 +15,7 @@ class Product extends Component
      */
     public function __construct()
     {
-        // $this->products = ProductModel::all();
+        $this->products = ProductModel::all();
     }
 
     /**

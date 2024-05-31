@@ -10,7 +10,10 @@ class ContactController extends Controller
 {
     public function Contact(Request $request)
     {
-        $data = Contact::get();
+        $data = Contact::where('status','!=',0)
+        ->OrderBy('created_at','DESC')
+        ->select('id','name','email','phone','title','content')
+        ->get();
         return view('frontend.contact', compact('data'));
     }
 }

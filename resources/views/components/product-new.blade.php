@@ -36,25 +36,13 @@
                         </li>
                     </ul>
                     <div class="tab-1 tab-content">
-                        <div class="row row-fix">
-                            <div class="col-xl-20 col-lg-3 col-sm-4 col-6 col-fix">
+                      
 
                                 <x-product />
 
-                            </div>
-                        </div>
+                           
                         <div class="text-center no-padding">
-                            <a class="see-more" title="Xem tất cả" href="san-pham-moi">Xem tất cả</a>
-                        </div>
-                    </div>
-                    <div class="tab-2 tab-content">
-                        <div class="text-center no-padding">
-                            <a class="see-more" title="Xem tất cả" href="san-pham-noi-bat">Xem tất cả</a>
-                        </div>
-                    </div>
-                    <div class="tab-3 tab-content">
-                        <div class="text-center no-padding">
-                            <a class="see-more" title="Xem tất cả" href="san-pham-ban-chay">Xem tất cả</a>
+                            <a class="see-more" title="Xem tất cả" href="{{ route('product') }}">Xem tất cả</a>
                         </div>
                     </div>
                 </div>

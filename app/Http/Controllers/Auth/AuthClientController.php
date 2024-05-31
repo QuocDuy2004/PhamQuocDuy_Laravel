@@ -44,7 +44,7 @@ class AuthClientController extends Controller
     }
     public function ForgotPage()
     {
-        return view('auth.forgot'); // Đảm bảo bạn có view 'auth.forgot'
+        return view('auth.forgot'); 
     }
 
 

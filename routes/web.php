@@ -45,7 +45,6 @@ Route::get('/tin-tuc', [NewsController::class, 'News'])->name('news');
 Route::get('/home', [ContactController::class, 'home']);
 //Product
 Route::get('/san-pham', [SanphamController::class, 'Product'])->name('product');
-Route::get('/san-pham', [SanphamController::class, 'Product'])->name('product');
 Route::get('/chi-tiet-san-pham/{slug}', [ProductDetailController::class, 'ProductDetail'])->name('detail');
 Route::post('cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/lien-he', [ContactController::class, 'Contact'])->name('contact');
@@ -215,7 +214,7 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('trash', [ProductController::class, 'trash'])->name('admin.product.trash');
         Route::get('create', [ProductController::class, 'create'])->name('admin.product.create');
         Route::post('store', [ProductController::class, 'store'])->name('admin.product.store');
-
+        
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::put('update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
         Route::get('status/{id}', [ProductController::class, 'status'])->name('admin.product.status');
@@ -223,7 +222,10 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('show/{id}', [ProductController::class, 'show'])->name('admin.product.show');
         Route::get('destroy/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
         Route::delete('restore/{id}', [ProductController::class, 'restore'])->name('admin.product.restore');
-    });
+
+        Route::post('bulk-delete', [ProductController::class, 'bulkDelete'])->name('admin.product.bulkDelete');
+        Route::post('bulk-restore', [ProductController::class, 'bulkRestore'])->name('admin.product.bulkRestore');
+    });    
 
 
     Route::prefix('topic')->middleware('guest')->group(function () {

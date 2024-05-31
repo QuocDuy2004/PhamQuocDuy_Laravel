@@ -31,9 +31,8 @@
                                 <th>ID</th>
                                 <th>Tên</th>
                                 <th>Email</th>
-                                <th>Điện thoại</th>
                                 <th>Tiêu Đề</th>
-                                <th>Nội Dung</th>
+                                <th>Nôi Dung</th>
                                 <th>Thao Tác</th>
                             </tr>
                         </thead>
@@ -45,27 +44,31 @@
                                     </td>
                                     <td>{{ $contact->id }}</td>
                                     <td>{{ $contact->name }}</td>
-                                    <td>{{ $contact->email }}</td> <!-- Sửa chính tả 'emai' thành 'email' -->
+                                    <td>{{ $contact->email }}</td>
                                     <td>{{ $contact->phone }}</td>
                                     <td>{{ $contact->title }}</td>
-                                    <td>{{ $contact->content }}</td> <!-- Sửa từ 'nội dung' thành 'content' -->
                                     <td>
                                         <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
                                                 <i class="mdi mdi-dots-vertical"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item waves-effect" href="{{ route('admin.contact.edit', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-pencil-outline me-1"></i> Sửa
+                                                <a class="dropdown-item waves-effect"
+                                                    href="{{ route('admin.contact.edit', ['id' => $contact->id]) }}">
+                                                    <i class="mdi mdi-pencil-outline me-1"></i> Edit
                                                 </a>
-                                                <a class="dropdown-item waves-effect" href="{{ route('admin.contact.delete', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
+                                                <a class="dropdown-item waves-effect"
+                                                    href="{{ route('admin.contact.delete', ['id' => $contact->id]) }}">
+                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Delete
                                                 </a>
-                                                <a class="dropdown-item waves-effect" href="{{ route('admin.contact.show', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-eye"></i> Hiển thị
+                                                <a class="dropdown-item waves-effect"
+                                                    href="{{ route('admin.contact.show', ['id' => $contact->id]) }}">
+                                                    <i class="mdi mdi-eye"></i> Show
                                                 </a>
-                                                <a class="dropdown-item waves-effect" href="{{ route('admin.contact.update', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-update"></i> Cập nhật
+                                                <a class="dropdown-item waves-effect"
+                                                    href="{{ route('admin.contact.update', ['id' => $contact->id]) }}">
+                                                    <i class="mdi mdi-update"></i> Update
                                                 </a>
                                             </div>
                                         </div>
@@ -75,7 +78,6 @@
                         </tbody>
                     </table>
                 </div>
-                
 
             </div>
         </div>

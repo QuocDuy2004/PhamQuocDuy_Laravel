@@ -13,12 +13,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $list = Category::where('status','!=',0)
+        $categories = Category::where('status','!=',0)
         ->OrderBy('created_at','DESC')
         ->select('id','image','name','slug')
         ->get(); //sắp sếp ngày tạo mới nhất
 
-        return view('backend.category.index',compact('list'));
+        return view('backend.category.index',compact('categories'));
     }
 
     /**

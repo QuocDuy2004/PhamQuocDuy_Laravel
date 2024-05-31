@@ -5,6 +5,8 @@
 
 
 
+
+
     <!-- Content wrapper -->
     <div class="content-wrapper">
 
@@ -29,11 +31,11 @@
                             <tr>
                                 <th>#</th>
                                 <th>ID</th>
-                                <th>Hình Ảnh</th>
+                                <th class="col-md-2">Hình Ảnh</th>
                                 <th>Tên</th>
                                 <th>Đường Dẫn</th>
-                                <th>Nội Dung</th>
-                                <th>Thao Tác</th>
+                                <th >Nội Dung</th>
+                                <th class="col-md-2">Thao Tác</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
@@ -48,10 +50,26 @@
                                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                                                 class="avatar avatar-xs pull-up" aria-label="Lilian Fuller"
                                                 data-bs-original-title="Lilian Fuller">
-                                                <img src="{{ asset('assets/images/' . $products->image) }}" alt="Avatar" class="rounded-circle">
+                                                @if ($products->image == null)
+                                                    <img src="{{ asset('assets/load.gif') }}" alt="gif"
+                                                        class="rounded-circle"
+                                                        onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
+                                                @else
+                                                    <img src="{{ asset('assets/images/' . $products->image) }}"
+                                                        alt="{{ $products->image }}" class="rounded-circle"
+                                                        onclick="showLargeImage('{{ asset('assets/images/' . $products->image) }}')">
+                                                @endif
                                             </li>
                                         </ul>
                                     </td>
+
+                                    <div id="largeImageContainer" style="display: none;">
+                                        <button class="close-btn" onclick="hideLargeImage()">Đóng</button>
+                                        <img id="largeImage" src="" alt="Không có hình ảnh hoặc lỗi">
+                                    </div>
+
+                                   
+                                    
                                     <td>{{ $products->name }}</td>
                                     <td>{{ $products->slug }}</td>
                                     <td>{{ $products->description }}</td>

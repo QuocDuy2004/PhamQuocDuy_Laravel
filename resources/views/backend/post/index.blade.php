@@ -46,7 +46,19 @@
                                     </td>
                                     <td>{{ $post->id }}</td>
                                     <td>
-                                        <img src="{{ asset('assets/images/' . $post->image) }}" alt="Hình ảnh">
+                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                                                class="avatar avatar-xs pull-up" aria-label="Lilian Fuller"
+                                                data-bs-original-title="Lilian Fuller">
+                                                @if ($post->image == null)
+                                                    <img width="80px" src="{{ asset('assets/load.gif') }}" alt="gif"
+                                                        class="rounded-circle">
+                                                @else
+                                                    <img width="80px" src="{{ asset('assets/images/' . $post->image) }}"
+                                                        alt="{{ $post->image }}" class="rounded-circle">
+                                                @endif
+                                            </li>
+                                        </ul>
                                     </td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->slug }}</td>
@@ -84,9 +96,6 @@
                         </tbody>
                     </table>
                 </div>
-
-
-
             </div>
         </div>
     @endsection

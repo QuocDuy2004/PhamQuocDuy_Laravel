@@ -33,17 +33,14 @@ class Product extends Model
         'brand_id',
         'name',
         'slug',
-        'price',
-        'pricesale',
-        'image',
-        'qty',
         'detail',
         'description',
+        'image',
+        'price',
+        'pricesale',
+        'status',
         'created_by',
         'updated_by',
-        'created_at',
-        'updated_at',
-        'status'
     ];
 
     /**

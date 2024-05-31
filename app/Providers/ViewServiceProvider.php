@@ -89,14 +89,14 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->share('product', Product::all());
-        view()->share('contacts', Contact::all());
+        view()->share('contacts', Contact::first());
         view()->share('users', User::all());
         view()->share('posts', Post::all());
         view()->share('categories', Category::all());
         view()->share('banners', Banner::first());
         view()->share('topics', Topic::first());
         view()->share('orderdetails', Orderdetail::first());
-        view()->share('brands', Brand::first());
+        view()->share('brands', Brand::all());
         view()->share('orders', Order::first());
         view()->share('menus', Menu::first());
     }

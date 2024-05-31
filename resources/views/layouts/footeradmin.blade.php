@@ -59,7 +59,19 @@
 <!-- BEGIN: Page JS-->
 <script src="{{ asset('themes/js/dashboards-analytics.js') }}"></script>
 <!-- END: Page JS-->
+<script>
+    function showLargeImage(imageUrl) {
+        var largeImage = document.getElementById('largeImage');
+        var largeImageContainer = document.getElementById('largeImageContainer');
+        largeImage.src = imageUrl;
+        largeImageContainer.style.display = 'block';
+    }
 
+    function hideLargeImage() {
+        var largeImageContainer = document.getElementById('largeImageContainer');
+        largeImageContainer.style.display = 'none';
+    }
+</script>
 </body>
 
 </html>

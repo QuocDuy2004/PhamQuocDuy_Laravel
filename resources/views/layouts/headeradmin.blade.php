@@ -2230,6 +2230,41 @@
         inset: auto 0 0 auto
     }
 </style>
+<style>
+    #largeImageContainer {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    #largeImageContainer img {
+        max-width: 70%;
+        /* Thay đổi kích thước tối đa của ảnh */
+        height: auto;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    .close-btn:hover {
+        color: #ccc;
+        /* Màu chữ khi di chuột qua */
+    }
+</style>
 </head>
 
 <body>

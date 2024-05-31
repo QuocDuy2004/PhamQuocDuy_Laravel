@@ -50,12 +50,13 @@
                 </div>
 
 
-
                 <div class="col-12 col-md-6 col-lg-3 link-list col-footer ">
                     <h4 class="title-menu title-menu2">
                         Thông tin chung
                     </h4>
                     <div class="group-address">
+                      
+                       
                         <ul>
                             <li><b>Địa chỉ: </b><span>
 
@@ -70,6 +71,7 @@
                                     href="mailto:{{ $contacts->email }}">{{ $contacts->email }}</a>
                             </li>
                         </ul>
+                      
                     </div>
 
                     <h4 class="title-menu">

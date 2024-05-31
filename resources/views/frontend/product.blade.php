@@ -11,8 +11,7 @@
                         <li class="tab-link has-content" data-tab="tab-1" data-url="san-pham-moi">
                             <span title="Sản phẩm mới">
                                 <img width="60" height="60" class="lazyload"
-                                    src="{{ asset('assets/100/487/743/themes/912230/assets/' . $product->image . '?1710378319730') }}"
-                                    data-src="{{ asset('assets/100/487/743/themes/912230/assets/' . $product->image . '?1710378319730') }}"
+                                    src="{{ asset('assets/100/487/743/themes/912230/assets/title_image_1_tag.png?1710378319730') }}"
                                     alt="Sản phẩm mới">
                                 Sản phẩm mới
                             </span>
@@ -20,8 +19,7 @@
                         <li class="tab-link" data-tab="tab-2" data-url="san-pham-noi-bat">
                             <span title="Sản phẩm nổi bật">
                                 <img width="60" height="60" class="lazyload"
-                                    src="{{ asset('assets/100/487/743/themes/912230/assets/' . $product->image . '?1710378319730') }}"
-                                    data-src="{{ asset('assets/100/487/743/themes/912230/assets/' . $product->image . '?1710378319730') }}"
+                                    src="{{ asset('assets/100/487/743/themes/912230/assets/title_image_2_tag.png?1710378319730') }}"
                                     alt="Sản phẩm nổi bật">
                                 Sản phẩm nổi bật
                             </span>
@@ -29,14 +27,14 @@
                         <li class="tab-link" data-tab="tab-3" data-url="san-pham-ban-chay">
                             <span title="Sản phẩm bán chạy">
                                 <img width="60" height="60" class="lazyload"
-                                    src="{{ asset('assets/100/487/743/themes/912230/assets/' . $product->image . '?1710378319730') }}"
-                                    data-src="{{ asset('assets/100/487/743/themes/912230/assets/' . $product->image . '?1710378319730') }}"
+                                    src="{{ asset('assets/100/487/743/themes/912230/assets/title_image_3_tag.png?1710378319730') }}"
                                     alt="Sản phẩm bán chạy">
                                 Sản phẩm bán chạy
                             </span>
                         </li>
                     </ul>
 
+                    <!-- Tab contents -->
                     <div class="tab-1 tab-content">
                         <div class="row row-fix">
                             @foreach ($data as $product)
@@ -109,21 +107,6 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
-                        <div class="text-center no-padding">
-                            <a class="see-more" title="Xem tất cả" href="{{ url('san-pham-moi') }}">Xem tất cả</a>
-                        </div>
-                    </div>
-
-                    <div class="tab-2 tab-content">
-                        <div class="text-center no-padding">
-                            <a class="see-more" title="Xem tất cả" href="{{ url('san-pham-noi-bat') }}">Xem tất cả</a>
-                        </div>
-                    </div>
-
-                    <div class="tab-3 tab-content">
-                        <div class="text-center no-padding">
-                            <a class="see-more" title="Xem tất cả" href="{{ url('san-pham-ban-chay') }}">Xem tất cả</a>
                         </div>
                     </div>
                 </div>

@@ -136,12 +136,15 @@
             </ul>
         </li>
 
+       
+
         <li class="menu-item ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
-                <i class="mdi-cart tf-icons mdi"></i>
+                <i class="menu-icon tf-icons mdi mdi-cart"></i>
                 <div>Đơn hàng</div>
             </a>
             <ul class="menu-sub">
+
                 <li class="menu-item ">
                     <a href="{{ route('admin.order.index') }}" class="menu-link">
                         <div>Quản lý đơn hàng</div>
@@ -152,7 +155,7 @@
 
         <li class="menu-item ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
-                <i class="mdi-account tf-icons mdi"></i>
+                <i class="menu-icon tf-icons mdi mdi-account"></i>
                 <div>Thành viên</div>
             </a>
             <ul class="menu-sub">
@@ -163,27 +166,21 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item ">
-            <a href="{{ route('admin.orderdetail.index') }}" class="menu-link">
-                <i class="mdi-shopping tf-icons mdi mdi-google-circles-extended"></i>
-                <div>Giỏ hàng</div>
-            </a>
-        </li>
 
         <li class="menu-item ">
-            <a href="{{ route('admin.contact.index') }}" class="menu-link">
-                <i class="mdi-headphones tf-icons mdi mdi-google-circles-extended"></i>
+            <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
+                <i class="menu-icon tf-icons mdi mdi-headphones"></i>
                 <div>Liên hệ</div>
             </a>
+            <ul class="menu-sub">
+
+                <li class="menu-item ">
+                    <a href="{{ route('admin.contact.index') }}" class="menu-link">
+                        <div>Quản lý liên hệ</div>
+                    </a>
+                </li>
+            </ul>
         </li>
-
-
-        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-        </div>
-        <div class="ps__rail-y" style="top: 0px; height: 631px; right: 4px;">
-            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 261px;"></div>
-        </div>
     </ul>
 
 </aside>
