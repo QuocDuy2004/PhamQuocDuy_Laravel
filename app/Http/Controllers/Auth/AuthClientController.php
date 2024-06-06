@@ -44,7 +44,7 @@ class AuthClientController extends Controller
     }
     public function ForgotPage()
     {
-        return view('auth.forgot'); 
+        return view('auth.forgot');
     }
 
 
@@ -89,7 +89,6 @@ class AuthClientController extends Controller
                     'username' => $googleUser->id,
                     'password' => Hash::make(Str::random(16)),
                     'gender' => 1,
-                    'api_token' => Str::random(60),
                     'phone' => '',
                     'address' => '',
                     'image' => $googleUser->avatar,
@@ -129,24 +128,21 @@ class AuthClientController extends Controller
         }
     }
 
-    public function Register(Request $request)
+    public function register(Request $request)
     {
-        $valid = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:pqd_user,email', // Sửa tên bảng
-            'phone' => ['required', 'string', 'max:255', 'unique:pqd_user,phone', 'regex:/^[0-9]{10,11}$/'], // Sửa tên bảng
-            'username' => 'required|string|max:255|unique:pqd_user,username', // Sửa tên bảng
+            'email' => 'required|string|email|max:255|unique:user,email', // Sửa tên bảng
+            'phone' => ['required', 'string', 'max:255', 'unique:user,phone', 'regex:/^[0-9]{10,11}$/'], // Sửa tên bảng
+            'username' => 'required|string|max:255|unique:user,username', // Sửa tên bảng
             'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string|min:8|same:password',
         ]);
 
-        if ($valid->fails()) {
-            return redirect()->back()->withErrors($valid)->withInput();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         try {
-            $apiToken = Str::random(32);
-
             $newUser = User::create([
                 'name' => $request->name,
                 'username' => $request->username,
@@ -154,8 +150,7 @@ class AuthClientController extends Controller
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
                 'gender' => 1,
-                'api_token' => $apiToken,
-                'address' => '',
+                'address' => $request->ip(),
                 'image' => '',
                 'roles' => 'customer',
                 'created_by' => 0,
@@ -171,6 +166,7 @@ class AuthClientController extends Controller
             return redirect()->back()->withErrors(['error' => 'Đăng ký thất bại. Hãy thử lại vài lần'])->withInput();
         }
     }
+
 
     public function Logout(Request $request)
     {

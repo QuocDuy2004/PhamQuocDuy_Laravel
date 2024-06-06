@@ -68,6 +68,7 @@ use App\Models\Orderdetail;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Topic;
+use Illuminate\Support\Facades\Request;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -91,13 +92,18 @@ class ViewServiceProvider extends ServiceProvider
         view()->share('product', Product::all());
         view()->share('contacts', Contact::first());
         view()->share('users', User::all());
-        view()->share('posts', Post::all());
-        view()->share('categories', Category::all());
+        view()->share('post', Post::all());
+        view()->share('category', Category::all());
         view()->share('banners', Banner::first());
         view()->share('topics', Topic::first());
         view()->share('orderdetails', Orderdetail::first());
-        view()->share('brands', Brand::all());
+        view()->share('brand', Brand::all());
         view()->share('orders', Order::first());
-        view()->share('menus', Menu::first());
+        view()->share('menus', Menu::all());
+
+        $domain = Request::getHost();
+        view()->share('domain', $domain);
     }
+
+   
 }

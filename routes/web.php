@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\backend\DashboardController;
 
 use App\Http\Controllers\frontend\UserController;
-use App\Http\Controllers\backend\UserController as UserControllers;
+use App\Http\Controllers\backend\UserController as UsersControllers;
 
 
 use App\Http\Controllers\frontend\HomeController;
@@ -88,7 +88,7 @@ Route::get('/he-thong-cua-hang', [SystemController::class, 'System'])->name('sys
 Route::prefix('admin')->middleware('guest')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'Dashboard'])->name('admin.dashboard.index');
     Route::get('auth/login', [AuthClientController::class, 'LoginAdminPage'])->name('admin.login');
-   
+
 
     Route::prefix('category')->middleware('guest')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
@@ -99,9 +99,11 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::put('update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
         Route::get('status/{id}', [CategoryController::class, 'status'])->name('admin.category.status');
-        Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
-        Route::get('destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
-        Route::delete('restore/{id}', [CategoryController::class, 'restore'])->name('admin.category.restore');
+        Route::delete('delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+        Route::get('show/{id}', [ProductController::class, 'show'])->name('admin.category.show');
+
+        Route::delete('destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::post('restore/{id}', [CategoryController::class, 'restore'])->name('admin.category.restore');
     });
 
     Route::prefix('brand')->middleware('guest')->group(function () {
@@ -113,25 +115,27 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('edit/{id}', [BrandController::class, 'edit'])->name('admin.brand.edit');
         Route::put('update/{id}', [BrandController::class, 'update'])->name('admin.brand.update');
         Route::get('status/{id}', [BrandController::class, 'status'])->name('admin.brand.status');
-        Route::get('delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
+        Route::delete('delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
         Route::get('show/{id}', [BrandController::class, 'show'])->name('admin.brand.show');
-        Route::get('destroy/{id}', [BrandController::class, 'destroy'])->name('admin.brand.destroy');
-        Route::delete('restore/{id}', [BrandController::class, 'restore'])->name('admin.brand.restore');
+
+        Route::delete('destroy/{id}', [BrandController::class, 'destroy'])->name('admin.brand.destroy');
+        Route::post('restore/{id}', [BrandController::class, 'restore'])->name('admin.brand.restore');
     });
 
     Route::prefix('banner')->middleware('guest')->group(function () {
-        Route::get('/', [BrandController::class, 'index'])->name('admin.banner.index');
-        Route::get('trash', [BrandController::class, 'trash'])->name('admin.banner.trash');
-        Route::get('create', [BrandController::class, 'create'])->name('admin.banner.create');
-        Route::post('store', [BrandController::class, 'store'])->name('admin.banner.store');
+        Route::get('/', [BannerController::class, 'index'])->name('admin.banner.index');
+        Route::get('trash', [BannerController::class, 'trash'])->name('admin.banner.trash');
+        Route::get('create', [BannerController::class, 'create'])->name('admin.banner.create');
+        Route::post('store', [BannerController::class, 'store'])->name('admin.banner.store');
 
-        Route::get('edit/{id}', [BrandController::class, 'edit'])->name('admin.brand.edit');
-        Route::put('update/{id}', [BrandController::class, 'update'])->name('admin.brand.update');
-        Route::get('status/{id}', [BrandController::class, 'status'])->name('admin.brand.status');
-        Route::get('delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
-        Route::get('show/{id}', [BrandController::class, 'show'])->name('admin.brand.show');
-        Route::get('destroy/{id}', [BrandController::class, 'destroy'])->name('admin.brand.destroy');
-        Route::delete('restore/{id}', [BrandController::class, 'restore'])->name('admin.brand.restore');
+        Route::get('edit/{id}', [BannerController::class, 'edit'])->name('admin.banner.edit');
+        Route::put('update/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
+        Route::get('status/{id}', [BannerController::class, 'status'])->name('admin.banner.status');
+        Route::delete('delete/{id}', [BannerController::class, 'delete'])->name('admin.banner.delete');
+        Route::get('show/{id}', [BannerController::class, 'show'])->name('admin.banner.show');
+
+        Route::delete('destroy/{id}', [BannerController::class, 'destroy'])->name('admin.banner.destroy');
+        Route::post('restore/{id}', [BannerController::class, 'restore'])->name('admin.banner.restore');
     });
 
     Route::prefix('contact')->middleware('guest')->group(function () {
@@ -173,10 +177,11 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
         Route::put('update/{id}', [OrderController::class, 'update'])->name('admin.order.update');
         Route::get('status/{id}', [OrderController::class, 'status'])->name('admin.order.status');
-        Route::get('delete/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
+        Route::delete('delete/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
         Route::get('show/{id}', [OrderController::class, 'show'])->name('admin.order.show');
-        Route::get('destroy/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy');
-        Route::delete('restore/{id}', [OrderController::class, 'restore'])->name('admin.order.restore');
+
+        Route::delete('destroy/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy');
+        Route::post('restore/{id}', [OrderController::class, 'restore'])->name('admin.order.restore');
     });
 
     Route::prefix('orderdetail')->middleware('guest')->group(function () {
@@ -203,10 +208,11 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
         Route::put('update/{id}', [PostController::class, 'update'])->name('admin.post.update');
         Route::get('status/{id}', [PostController::class, 'status'])->name('admin.post.status');
-        Route::get('delete/{id}', [PostController::class, 'delete'])->name('admin.post.delete');
+        Route::delete('delete/{id}', [PostController::class, 'delete'])->name('admin.post.delete');
         Route::get('show/{id}', [PostController::class, 'show'])->name('admin.post.show');
-        Route::get('destroy/{id}', [PostController::class, 'destroy'])->name('admin.post.destroy');
-        Route::delete('restore/{id}', [PostController::class, 'restore'])->name('admin.post.restore');
+
+        Route::delete('destroy/{id}', [PostController::class, 'destroy'])->name('admin.post.destroy');
+        Route::post('restore/{id}', [PostController::class, 'restore'])->name('admin.post.restore');
     });
 
     Route::prefix('product')->middleware('guest')->group(function () {
@@ -214,18 +220,16 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('trash', [ProductController::class, 'trash'])->name('admin.product.trash');
         Route::get('create', [ProductController::class, 'create'])->name('admin.product.create');
         Route::post('store', [ProductController::class, 'store'])->name('admin.product.store');
-        
+
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::put('update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
         Route::get('status/{id}', [ProductController::class, 'status'])->name('admin.product.status');
-        Route::get('delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
+        Route::delete('delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
         Route::get('show/{id}', [ProductController::class, 'show'])->name('admin.product.show');
-        Route::get('destroy/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
-        Route::delete('restore/{id}', [ProductController::class, 'restore'])->name('admin.product.restore');
 
-        Route::post('bulk-delete', [ProductController::class, 'bulkDelete'])->name('admin.product.bulkDelete');
-        Route::post('bulk-restore', [ProductController::class, 'bulkRestore'])->name('admin.product.bulkRestore');
-    });    
+        Route::delete('destroy/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::post('restore/{id}', [ProductController::class, 'restore'])->name('admin.product.restore');
+    });
 
 
     Route::prefix('topic')->middleware('guest')->group(function () {
@@ -237,26 +241,27 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('edit/{id}', [TopicController::class, 'edit'])->name('admin.topic.edit');
         Route::put('update/{id}', [TopicController::class, 'update'])->name('admin.topic.update');
         Route::get('status/{id}', [TopicController::class, 'status'])->name('admin.topic.status');
-        Route::get('delete/{id}', [TopicController::class, 'delete'])->name('admin.topic.delete');
+        Route::delete('delete/{id}', [TopicController::class, 'delete'])->name('admin.topic.delete');
         Route::get('show/{id}', [TopicController::class, 'show'])->name('admin.topic.show');
-        Route::get('destroy/{id}', [TopicController::class, 'destroy'])->name('admin.topic.destroy');
-        Route::delete('restore/{id}', [TopicController::class, 'restore'])->name('admin.topic.restore');
+
+        Route::delete('destroy/{id}', [TopicController::class, 'destroy'])->name('admin.topic.destroy');
+        Route::post('restore/{id}', [TopicController::class, 'restore'])->name('admin.topic.restore');
     });
 
-    
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserControllers::class, 'index'])->name('admin.user.index');
-        Route::get('trash', [UserControllers::class, 'trash'])->name('admin.user.trash');
-        Route::get('create', [UserControllers::class, 'create'])->name('admin.user.create');
-        Route::post('store', [UserControllers::class, 'store'])->name('admin.user.store');
 
-        Route::get('edit/{id}', [UserControllers::class, 'edit'])->name('admin.user.edit');
-        Route::put('update/{id}', [UserControllers::class, 'update'])->name('admin.user.update');
-        Route::get('status/{id}', [UserControllers::class, 'status'])->name('admin.user.status');
-        Route::get('delete/{id}', [UserControllers::class, 'delete'])->name('admin.user.delete');
-        Route::get('show/{id}', [UserControllers::class, 'show'])->name('admin.user.show');
-        Route::get('destroy/{id}', [UserControllers::class, 'destroy'])->name('admin.user.destroy');
-        Route::delete('restore/{id}', [UserControllers::class, 'restore'])->name('admin.user.restore');
+    Route::prefix('user')->middleware('guest')->group(function () {
+        Route::get('/', [UsersControllers::class, 'index'])->name('admin.user.index');
+        Route::get('trash', [UsersControllers::class, 'trash'])->name('admin.user.trash');
+        Route::get('create', [UsersControllers::class, 'create'])->name('admin.user.create');
+        Route::post('store', [UsersControllers::class, 'store'])->name('admin.user.store');
+
+        Route::get('edit/{id}', [UsersControllers::class, 'edit'])->name('admin.user.edit');
+        Route::put('update/{id}', [UsersControllers::class, 'update'])->name('admin.user.update');
+        Route::get('status/{id}', [UsersControllers::class, 'status'])->name('admin.user.status');
+        Route::delete('delete/{id}', [UsersControllers::class, 'delete'])->name('admin.user.delete');
+        Route::get('show/{id}', [UsersControllers::class, 'show'])->name('admin.user.show');
+
+        Route::delete('destroy/{id}', [UsersControllers::class, 'destroy'])->name('admin.user.destroy');
+        Route::post('restore/{id}', [UsersControllers::class, 'restore'])->name('admin.user.restore');
     });
-
 });

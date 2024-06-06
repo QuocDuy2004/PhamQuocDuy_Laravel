@@ -1,101 +1,127 @@
 @extends('layouts.appadmin')
-@section('title', 'Quản lý liên hệ')
+@section('title', 'Quản lý bài viết')
 
 @section('content')
 
+<!-- Content wrapper -->
+<div class="content-wrapper">
 
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
 
-    <!-- Content wrapper -->
-    <div class="content-wrapper">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light">@yield('title')</span></h4>
 
-        <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <h5 class="card-header">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <a class="btn btn-success me-2" href="{{ route('admin.post.create') }}">Create</a>
+                    <a class="btn btn-danger" href="{{ route('admin.post.trash') }}">Trash</a>
+                </div>
+            </h5>
 
-            <h4 class="py-3 mb-4"><span class="text-muted fw-light">@yield('title')</span>
-            </h4>
-
-            <!-- Basic Bootstrap Table -->
-            <div class="card">
-                <h5 class="card-header">
-                    <div class="col-md-12 d-flex justify-content-end">
-                        <a class="btn btn-success me-2" href="{{ route('admin.post.create') }}">Create</a>
-                        <a class="btn btn-danger" href="{{ route('admin.post.trash') }}">Trash</a>
-                    </div>
-                </h5>
-
-                <div class="table-responsive text-nowrap">
-                    <table class="table">
-                        <thead>
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ID</th>
+                            <th>Hình Ảnh</th>
+                            <th>Tiêu Đề</th>
+                            <th>Đường Dẫn</th>
+                            <th>Đề Tài</th>
+                            <th>Nội Dung</th>
+                            <th>Ngày tạo</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @foreach ($list as $posts)
                             <tr>
-                                <th>#</th>
-                                <th>ID</th>
-                                <th>Tiêu Đề</th>
-                                <th>Đường Dẫn</th>
-                                <th>Đề Tài</th>
-                                <th>Nội Dung</th>
-                                <th>Hình Ảnh</th>
-                                <th>Ngày tạo</th>
-                                <th>Thao Tác</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                            @foreach ($posts as $post)
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>{{ $post->id }}</td>
-                                    <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                class="avatar avatar-xs pull-up" aria-label="Lilian Fuller"
-                                                data-bs-original-title="Lilian Fuller">
-                                                @if ($post->image == null)
-                                                    <img width="80px" src="{{ asset('assets/load.gif') }}" alt="gif"
-                                                        class="rounded-circle">
-                                                @else
-                                                    <img width="80px" src="{{ asset('assets/images/' . $post->image) }}"
-                                                        alt="{{ $post->image }}" class="rounded-circle">
-                                                @endif
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>{{ $post->title }}</td>
-                                    <td>{{ $post->slug }}</td>
-                                    <td>{{ $post->detail }}</td>
-                                    <td>{{ $post->description }}</td>
-                                    <td>{{ $post->created_at }}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.post.edit', ['id' => $post->id]) }}">
-                                                    <i class="mdi mdi-pencil-outline me-1"></i> Sửa
-                                                </a>
-                                                <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.post.delete', ['id' => $post->id]) }}">
-                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
-                                                </a>
-                                                <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.post.show', ['id' => $post->id]) }}">
-                                                    <i class="mdi mdi-eye"></i> Hiển thị
-                                                </a>
-                                                <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.post.update', ['id' => $post->id]) }}">
-                                                    <i class="mdi mdi-update"></i> Cập nhật
-                                                </a>
-                                            </div>
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td>{{ $posts->id }}</td>
+                                <td>
+                                    <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                                            class="avatar avatar-xs pull-up">
+                                            @if ($posts->image == null)
+                                                <img src="{{ asset('assets/load.gif') }}" alt="gif"
+                                                    class="rounded-circle">
+                                            @else
+                                                <img src="{{ asset('assets/images/' . $posts->image) }}"
+                                                    alt="{{ $posts->image }}" class="rounded-circle">
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>{{ $posts->title }}</td>
+                                <td>{{ $posts->slug }}</td>
+                                <td>{{ $posts->detail }}</td>
+                                <td>{{ $posts->description }}</td>
+                                <td>{{ $posts->created_at }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                            <i class="mdi mdi-dots-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item waves-effect"
+                                                href="{{ route('admin.post.edit', ['id' => $posts->id]) }}">
+                                                <i class="mdi mdi-pencil-outline me-1"></i> Chỉnh Sửa
+                                            </a>
+                                            <a class="dropdown-item waves-effect" href="javascript:void(0)"
+                                                onclick="deletes({{ $posts->id }})">
+                                                <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
+                                            </a>
+                                            <a class="dropdown-item waves-effect"
+                                                href="{{ route('admin.post.show', ['id' => $posts->id]) }}">
+                                                <i class="mdi mdi-eye"></i> Xem
+                                            </a>
                                         </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa bài viết</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có chắc chắn muốn xóa bài viết <b class="text-dark">
+                            {{ $posts->title ?? '' }}
+                        </b> vào <b class="text-danger">thùng rác</b> không?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <form id="deleteForm" action="" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Đồng Ý</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+</div>
+
+<script>
+    function deletes(id) {
+        var form = document.getElementById('deleteForm');
+        form.action = '{{ route('admin.post.delete', ['id' => ':id']) }}'.replace(':id', id);
+        $('#deleteModal').modal('show');
+    }
+</script>
+
+@endsection

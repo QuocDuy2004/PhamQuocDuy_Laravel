@@ -18,7 +18,7 @@
     <!-- Canonical SEO -->
     <link rel="canonical" href="https://themeselection.com/item/materio-free-bootstrap-html-laravel-admin-template/">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../themes/img/favicon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ asset('themes/img/favicon/favicon.ico') }}">
     @yield('header')
 
     <!-- Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->

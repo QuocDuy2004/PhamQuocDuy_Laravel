@@ -23,7 +23,7 @@
                     <img width="40" height="40" class="lazyload" src="assets/100/487/743/themes/912230/assets/lazy.png?1710378319730" data-src="assets/100/487/743/themes/912230/assets/chinhsach_3.png?1710378319730" alt="Hỗ trợ nhanh chóng">
                     <div class="text">
                         <span class="title">Hỗ trợ nhanh chóng</span>
-                        <span class="des">Gọi Hotline: 19006750 để được hỗ trợ ngay lập tức</span>
+                        <span class="des">Gọi Hotline: {{ $contacts->phone }} để được hỗ trợ ngay lập tức</span>
                     </div>
                 </a>
 

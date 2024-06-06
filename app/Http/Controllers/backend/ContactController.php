@@ -14,8 +14,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
-        return view('backend.contact.index',compact('contacts'));
+        $list = Contact::where("status", "!=", 0)
+        ->orderBy("created_at", "DESC")
+        ->select('id','name','phone','email', 'content', 'created_at','status')
+        ->paginate(7);
+        return view('backend.contact.index',compact("list"));
     }
 
     /**

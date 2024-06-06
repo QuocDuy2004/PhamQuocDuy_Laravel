@@ -98,7 +98,7 @@
                                                         </div>
                                                         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                                             <fieldset class="form-group">
-                                                                <input type="password" class="form-control form-control-lg" value="" name="password_confirmation" id="password" placeholder="Mật khẩu" required="">
+                                                                <input type="password" class="form-control form-control-lg" value="" name="password_confirmation" id="password_confirmation" placeholder="Mật khẩu" required="">
                                                             </fieldset>
                                                         </div>
                                                     </div>

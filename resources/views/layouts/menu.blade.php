@@ -115,6 +115,47 @@
             </ul>
         </li>
 
+        <li class="menu-item ">
+            <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
+                <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
+                <div>Thương hiệu</div>
+            </a>
+
+
+            <ul class="menu-sub">
+
+                <li class="menu-item ">
+                    <a href="{{ route('admin.brand.index') }}" class="menu-link">
+                        <div>Quản lý thương hiệu</div>
+                    </a>
+
+
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-item ">
+            <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
+                <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
+                <div>Thể loại</div>
+            </a>
+
+
+            <ul class="menu-sub">
+
+                <li class="menu-item ">
+                    <a href="{{ route('admin.category.index') }}" class="menu-link">
+                        <div>Quản lý thể loại</div>
+                    </a>
+
+
+                </li>
+            </ul>
+        </li>
+
+
+
+
 
 
 

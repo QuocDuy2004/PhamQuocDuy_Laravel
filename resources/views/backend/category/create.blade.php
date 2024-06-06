@@ -1,5 +1,5 @@
 @extends('layouts.appadmin')
-@section('title', 'Create Category')
+@section('title', 'Tạo thể loại')
 
 @section('content')
     <!-- ! Hide app brand if navbar-full -->

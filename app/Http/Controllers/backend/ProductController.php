@@ -16,16 +16,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $list = Product::where("products.status", "!=", 0)
-        //     ->join("categories", "products.category_id", "=", "categories.id")
-        //     ->join("brands", "products.brand_id", "=", "brands.id")
-        //     ->orderBy("products.created_at", "DESC")
-        //     ->select("products.id", "products.slug", "products.name", "products.image", "categories.name as categoryname", "brands.name as brandname")
-        //     ->paginate(7);
-        return view('backend.product.index');
+        $categories = Category::all();
+        $brands = Brand::all();
+        $list = Product::where('status', '!=', 0)->paginate(7);
+        return view('backend.product.index', compact('categories', 'brands', 'list'));
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -44,7 +39,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request...
         $request->validate([
             'category_id' => 'required|integer',
             'brand_id' => 'required|integer',
@@ -58,13 +52,12 @@ class ProductController extends Controller
             'status' => 'required|integer',
         ]);
 
-        // Handle the image upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('assets/images'), $imageName);
         } else {
-            $imageName = null; // or handle this case differently if image is required
+            $imageName = null;
         }
 
         // Create the product
@@ -83,7 +76,7 @@ class ProductController extends Controller
         ]);
 
 
-        return redirect()->route('admin.product.index')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.product.create')->with('success', 'Tạo sản phẩm thành công');
     }
 
 
@@ -92,16 +85,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        // $list = Product::where("products.status", "!=", 0)
-        //     ->join("categories", "products.category_id", "=", "categories.id")
-        //     ->join("brands", "products.brand_id", "=", "brands.id")
-        //     ->orderBy("products.created_at", "DESC")
-        //     ->select("products.id", "products.slug", "products.name", "products.image", "categories.name as categoryname", "brands.name as brandname")
-        //     ->paginate(7);
+        // Lấy thông tin sản phẩm theo ID
+        $product = Product::find($id);
         $categories = Category::all();
         $brands = Brand::all();
-        return view('backend.product.show', compact('categories', 'brands'));
+        return view('backend.product.show', compact('product', 'categories', 'brands'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -146,32 +136,56 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      */
 
-    public function destroy(Request $request)
+    public function delete($id)
     {
-        $ids = $request->input('selected_ids');
-        if (!empty($ids)) {
-            Product::whereIn('id', $ids)->delete();
-            return redirect()->route('admin.product.trash')->with('success', 'Xóa sản phẩm thành công');
+        $product = Product::find($id);
+        if ($product) {
+            $product->status = 0;
+            $product->save();
+            return redirect()->route('admin.product.index')->with('success', 'Xóa sản phẩm thành công');
         }
-        return redirect()->route('admin.product.trash')->with('error', 'Xóa sản phẩm thất bại');
+        return redirect()->route('admin.product.index')->with('error', 'Không tìm thấy sản phẩm');
     }
-
 
     public function trash()
     {
-
         $categories = Category::all();
         $brands = Brand::all();
-        return view('backend.product.trash', compact('categories', 'brands'));
+        $products = Product::where('status', '==', 0)->get();
+        return view('backend.product.trash', compact('categories', 'brands', 'products'));
     }
 
-    public function restore(Request $request)
+    public function destroy($id)
     {
-        $ids = $request->input('selected_ids');
-        if (!empty($ids)) {
-            Product::whereIn('id', $ids)->restore();
-            return redirect()->route('admin.product.trash')->with('success', 'Khôi phục sản phẩm thành công');
+        $product = Product::find($id);
+        if ($product) {
+            $product->delete();
+            return redirect()->route('admin.product.trash')->with('success', 'Xóa thành công');
         }
-        return redirect()->route('admin.product.trash')->with('error', 'Khôi phục sản phẩm thất bại');
+        return redirect()->route('admin.product.trash')->with('error', 'Sản phẩm không tồn tại');
+    }
+    public function restore(Request $request, $id)
+    {
+        $product = Product::where('id', $id)->where('status', 0)->first();
+
+        if (!$product) {
+            return redirect()->route('admin.product.trash')->with('error', 'Không tìm thấy sản phẩm hoặc sản phẩm không ở trạng thái bị xóa');
+        }
+        $product->name = $request->name ?? $product->name;
+        $product->slug = $request->slug ?? $product->slug;
+        $product->detail = $request->detail ?? $product->detail;
+        $product->description = $request->description ?? $product->description;
+        $product->price = $request->price ?? $product->price;
+        $product->pricesale = $request->pricesale ?? $product->pricesale;
+
+        $product->status = 1;
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/images'), $imageName);
+            $product->image = $imageName;
+        }
+        $product->save();
+        return redirect()->route('admin.product.trash')->with('success', 'Khôi phục thành công');
     }
 }

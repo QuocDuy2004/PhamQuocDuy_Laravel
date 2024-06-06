@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use User;
 
 class UserController extends Controller
 {
@@ -21,11 +22,7 @@ class UserController extends Controller
     }
     public function list($page = 1)
     {
-        $title = "Danh sách";
-        $data = [
-            "name" => "Phạm Quốc Duy",
-            "lop" => "CCQ2111B"
-        ];
+       $list = User::all();
         return view("user.list", compact("title", "data"));
     }
 }

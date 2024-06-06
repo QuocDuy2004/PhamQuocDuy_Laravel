@@ -19,7 +19,21 @@
                         <a class="btn btn-danger" href="{{ route('admin.order.trash') }}">Trash</a>
                     </div>
                 </h5>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
@@ -37,45 +51,81 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($orders as $order)
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>{{ $order->id }}</td>
-                                <td>{{ $order->delivery_name }}</td>
-                                <td>{{ $order->delivery_gender }}</td>
-                                <td>{{ $order->delivery_email }}</td>
-                                <td>{{ $order->delivery_phone }}</td>
-                                <td>{{ $order->delivery_address }}</td>
-                                <td>{{ $order->note }}</td>
-                                <td>{{ $order->created_at }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item waves-effect" href="{{ route('admin.order.edit', ['id' => $order->id]) }}">
-                                                <i class="mdi mdi-pencil-outline me-1"></i> Edit
-                                            </a>
-                                            <a class="dropdown-item waves-effect" href="{{ route('admin.order.delete', ['id' => $order->id]) }}">
-                                                <i class="mdi mdi-trash-can-outline me-1"></i> Delete
-                                            </a>
-                                            <a class="dropdown-item waves-effect" href="{{ route('admin.order.show', ['id' => $order->id]) }}">
-                                                <i class="mdi mdi-eye"></i> Show
-                                            </a>
-                                            <a class="dropdown-item waves-effect" href="{{ route('admin.order.update', ['id' => $order->id]) }}">
-                                                <i class="mdi mdi-update"></i> Update
-                                            </a>
+                            @foreach ($list as $order)
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $order->delivery_name }}</td>
+                                    <td>{{ $order->delivery_gender }}</td>
+                                    <td>{{ $order->delivery_email }}</td>
+                                    <td>{{ $order->delivery_phone }}</td>
+                                    <td>{{ $order->delivery_address }}</td>
+                                    <td>{{ $order->note }}</td>
+                                    <td>{{ $order->created_at }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item waves-effect"
+                                                    href="{{ route('admin.order.edit', ['id' => $order->id]) }}">
+                                                    <i class="mdi mdi-pencil-outline me-1"></i> Chỉnh Sửa
+                                                </a>
+                                                <a class="dropdown-item waves-effect" href="javascript:void(0)"
+                                                    onclick="deletes({{ $order->id }}, '{{ $order->delivery_name }}')">
+                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
+                                                </a>
+                                                <a class="dropdown-item waves-effect"
+                                                    href="{{ route('admin.order.show', ['id' => $order->id]) }}">
+                                                    <i class="mdi mdi-eye"></i> Xem
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-end">
+                        {{ $list->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
-                
+
             </div>
         </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa đơn hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có chắc chắn muốn xóa đơn hàng <b class="text-dark"><span id="orderName"></span></b> vào <b
+                            class="text-danger">thùng rác</b> không?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <form id="deleteForm" action="" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Đồng Ý</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function deletes(id, deliveryName) {
+                var form = document.getElementById('deleteForm');
+                form.action = '{{ route('admin.order.delete', ['id' => ':id']) }}'.replace(':id', id);
+                var orderNameElement = document.getElementById('orderName');
+                orderNameElement.textContent = deliveryName;
+                $('#deleteModal').modal('show');
+            }
+        </script>
+
     @endsection

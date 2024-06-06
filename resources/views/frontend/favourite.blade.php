@@ -42,79 +42,6 @@
                         <div class="list-favorite-right" data-type="wishlist">
                             <div class="list-favorite-main">
                                 <div class="list-favorite-list row row-fix">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     <div class="col-6 col-md-4 col-lg-20 col-fix">
                                         <form action="/cart/add" method="post" class="variants product-action"
                                             data-cart-form="" data-id="product-actions-31449366"
@@ -130,17 +57,11 @@
                                                         data-was-processed="true">
 
                                                 </a>
-
-
-
-
                                                 <div class="vendoritem"><img width="60" height="60"
                                                         class="lazyload loaded"
                                                         src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/vendorimg_6.jpg?1710378319730"
                                                         data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/vendorimg_6.jpg?1710378319730"
                                                         alt="Seiko" data-was-processed="true"></div>
-
-
                                                 <input class="hidden" type="hidden" name="variantId" value="91048622">
                                                 <div class="action">
 
@@ -199,95 +120,10 @@
                                                 <div class="price-box">
                                                     6.840.000₫ </div>
 
-
-
-
                                             </div>
 
                                         </form>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     <div class="col-6 col-md-4 col-lg-20 col-fix">
                                         <form action="/cart/add" method="post" class="variants product-action"
                                             data-cart-form="" data-id="product-actions-31449128"
@@ -359,13 +195,8 @@
                                                             src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_2_tag.png?1710378319730"
                                                             data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_2_tag.png?1710378319730"
                                                             data-was-processed="true"> Nổi bật</span>
-
-
-
                                                 </div>
-
                                             </div>
-
                                             <div class="product-info">
                                                 <h3 class="product-name"><a class="line-clamp line-clamp-2"
                                                         href="/casio-mtp-1370d-7a2vdf-nam-quartz-pin-mat-so-40mm-kinh-cung-chong-nuoc-5atm"
@@ -377,85 +208,9 @@
                                                     <span class="compare-price">2.000.000₫</span>
 
                                                 </div>
-
-
-
-
                                             </div>
-
                                         </form>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     <div class="col-6 col-md-4 col-lg-20 col-fix">
                                         <form action="/cart/add" method="post" class="variants product-action"
                                             data-cart-form="" data-id="product-actions-31449269"
@@ -469,22 +224,15 @@
                                                         data-src="//bizweb.dktcdn.net/thumb/large/100/487/743/products/srpg33k1-699x699.png?v=1687059618537"
                                                         alt="SEIKO 5 FIELD SPORTS STYLE SRPG33K1 – NAM – AUTOMATIC (TỰ ĐỘNG) – MẶT SỐ 39.4MM, CHỐNG NƯỚC 10ATM, BỘ MÁY IN-HOUSE"
                                                         data-was-processed="true">
-
                                                 </a>
-
                                                 <span class="smart">Giảm<br>
                                                     14%
                                                 </span>
-
-
-
                                                 <div class="vendoritem"><img width="60" height="60"
                                                         class="lazyload loaded"
                                                         src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/vendorimg_6.jpg?1710378319730"
                                                         data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/vendorimg_6.jpg?1710378319730"
                                                         alt="Seiko" data-was-processed="true"></div>
-
-
                                                 <input class="hidden" type="hidden" name="variantId" value="91048378">
                                                 <div class="action">
 
@@ -501,7 +249,6 @@
                                                             </path>
                                                         </svg>
                                                     </a>
-
                                                     <a href="javascript:void(0)"
                                                         class="setWishlist btn-wishlist btn-views active"
                                                         data-wish="seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house"
@@ -510,24 +257,15 @@
                                                             <use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                 xlink:href="#icon-wishlist-active"></use>
                                                         </svg> </a>
-
                                                 </div>
                                                 <div class="tag-km">
-
-
-
                                                     <span><img alt="Nổi bật" width="60" height="60"
                                                             class="lazyload loaded"
                                                             src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_2_tag.png?1710378319730"
                                                             data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_2_tag.png?1710378319730"
                                                             data-was-processed="true"> Nổi bật</span>
-
-
-
                                                 </div>
-
                                             </div>
-
                                             <div class="product-info">
                                                 <h3 class="product-name"><a class="line-clamp line-clamp-2"
                                                         href="/seiko-5-field-sports-style-srpg33k1-nam-automatic-tu-dong-mat-so-39-4mm-chong-nuoc-10atm-bo-may-in-house"
@@ -537,86 +275,10 @@
                                                 <div class="price-box">
                                                     7.090.000₫
                                                     <span class="compare-price">8.200.000₫</span>
-
                                                 </div>
-
-
-
-
                                             </div>
-
                                         </form>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                     <div class="col-6 col-md-4 col-lg-20 col-fix">
                                         <form action="/cart/add" method="post" class="variants product-action"
@@ -633,13 +295,9 @@
                                                         data-was-processed="true">
 
                                                 </a>
-
                                                 <span class="smart">Giảm<br>
                                                     11%
                                                 </span>
-
-
-
                                                 <div class="vendoritem"><img width="60" height="60"
                                                         class="lazyload loaded"
                                                         src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/vendorimg_2.jpg?1710378319730"
@@ -663,7 +321,6 @@
                                                             </path>
                                                         </svg>
                                                     </a>
-
                                                     <a href="javascript:void(0)"
                                                         class="setWishlist btn-wishlist btn-views active"
                                                         data-wish="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm"
@@ -672,24 +329,15 @@
                                                             <use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                 xlink:href="#icon-wishlist-active"></use>
                                                         </svg> </a>
-
                                                 </div>
                                                 <div class="tag-km">
-
-
-
-
-
                                                     <span><img alt="Bán chạy" width="60" height="60"
                                                             class="lazyload loaded"
                                                             src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_3_tag.png?1710378319730"
                                                             data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_3_tag.png?1710378319730"
                                                             data-was-processed="true"> Bán chạy</span>
-
                                                 </div>
-
                                             </div>
-
                                             <div class="product-info">
                                                 <h3 class="product-name"><a class="line-clamp line-clamp-2"
                                                         href="/g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm"
@@ -699,98 +347,10 @@
                                                 <div class="price-box">
                                                     4.638.000₫
                                                     <span class="compare-price">5.200.000₫</span>
-
                                                 </div>
-
-
-
-
                                             </div>
-
                                         </form>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     <div class="col-6 col-md-4 col-lg-20 col-fix">
                                         <form action="/cart/add" method="post" class="variants product-action"
                                             data-cart-form="" data-id="product-actions-31449180"

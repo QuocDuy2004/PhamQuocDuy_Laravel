@@ -22,7 +22,21 @@
                         <a class="btn btn-danger" href="{{ route('admin.contact.trash') }}">Trash</a>
                     </div>
                 </h5>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
@@ -37,7 +51,7 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($contacts as $contact)
+                            @foreach ($list as $contact)
                                 <tr>
                                     <td>
                                         <input type="checkbox">

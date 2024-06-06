@@ -13,11 +13,11 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::where('status','!=',0)
-        ->OrderBy('created_at','DESC')
-        ->select('id','name','slug','image','sort_order','description	')->orderBy('created_at','DESC')
-        ->get(); //sắp sếp ngày tạo mới nhất
-        return view('backend.brand.index',compact('brands'));
+        $list = Brand::where("status", "!=", 0)
+            ->orderBy("created_at", "DESC")
+            ->select("id", "name", "slug", "image", "description", "status")
+            ->paginate(7);
+        return view('backend.brand.index', compact("list"));
     }
 
     /**
@@ -33,38 +33,144 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        return view('backend.brand.store');
+        // Validate the request...
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'sort_order' => 'required|integer',
+            'description' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|integer',
+        ]);
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('assets/images'), $imageName);
+        } else {
+            $imageName = null; // or handle this case differently if image is required
+        }
+
+        // Create the brand
+        Brand::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'sort_order' => $request->sort_order,
+            'description' => $request->description,
+            'image' => $imageName,
+            'status' => $request->status,
+            'created_by' => 1,
+        ]);
+
+        return redirect()->route('admin.brand.create')->with('success', 'Tạo sản phẩm thành công');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        return view('backend.brand.show');
+        $brand = Brand::find($id);
+        return view('backend.brand.show', compact('brand'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        return view('backend.brand.edit');
+        $brand = Brand::find($id);
+        return view('backend.brand.edit', compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        return view('backend.brand.update');
+        $brand = Brand::find($id);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|integer',
+        ]);
+
+        $brand->name = $request->name;
+        $brand->slug = $request->slug;
+        $brand->description = $request->description;
+        $brand->status = $request->status;
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/images'), $imageName);
+            $brand->image = $imageName;
+        }
+
+        $brand->save();
+
+        return redirect()->route('admin.brand.index')->with('success', 'Cập nhật thành công');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete($id)
     {
-        return view('backend.brand.destroy');
+        $brand = Brand::find($id);
+        if ($brand) {
+            $brand->status = 0;
+            $brand->save();
+            return redirect()->route('admin.brand.index')->with('success', 'Xóa sản phẩm thành công');
+        }
+        return redirect()->route('admin.brand.index')->with('error', 'Không tìm thấy sản phẩm');
+    }
+
+    public function trash()
+    {
+        $brands = Brand::where('status', '=', 0)->get();
+        return view('backend.brand.trash', compact('brands'));
+    }
+
+    public function destroy($id)
+    {
+        $brand = Brand::find($id);
+        if ($brand) {
+            $brand->delete();
+            return redirect()->route('admin.brand.trash')->with('success', 'Xóa thành công');
+        }
+        return redirect()->route('admin.brand.trash')->with('error', 'Sản phẩm không tồn tại');
+    }
+
+    public function restore(Request $request, $id)
+    {
+        $brand = Brand::where('id', $id)->where('status', 0)->first();
+
+        if (!$brand) {
+            return redirect()->route('admin.brand.trash')->with('error', 'Không tìm thấy sản phẩm hoặc sản phẩm không ở trạng thái bị xóa');
+        }
+
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $brand->name = $request->name ?? $brand->name;
+        $brand->slug = $request->slug ?? $brand->slug;
+        $brand->description = $request->description ?? $brand->description;
+        $brand->status = 1;
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/images'), $imageName);
+            $brand->image = $imageName;
+        }
+
+        $brand->save();
+        return redirect()->route('admin.brand.trash')->with('success', 'Khôi phục thành công');
     }
 }

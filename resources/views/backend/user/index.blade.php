@@ -2,22 +2,22 @@
 @section('title', 'Quản lý thành viên')
 
 @section('content')
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-
             <h4 class="py-3 mb-4"><span class="text-muted fw-light">@yield('title')</span></h4>
 
-            <!-- Basic Bootstrap Table -->
             <div class="card">
                 <h5 class="card-header">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <a class="btn btn-success me-2" href="{{ route('admin.user.create') }}">Create</a>
-                        <a class="btn btn-danger" href="{{ route('admin.user.trash') }}">Trash</a>
+                        <a class="btn btn-success me-2" href="{{ route('admin.user.create') }}">Tạo Thành viên</a>
+                        <a class="btn btn-danger" href="{{ route('admin.user.trash') }}">Thùng Rác</a>
                     </div>
                 </h5>
+                @if (session('success'))
+                    <script>
+                        showSuccessMessage('{{ session('success') }}');
+                    </script>
+                @endif
 
                 <div class="table-responsive text-nowrap">
                     <table class="table">
@@ -27,38 +27,36 @@
                                 <th>ID</th>
                                 <th>Tên</th>
                                 <th>Email</th>
-                                <th>Điện Thoại</th>
+                                <th>Số điện thoại</th>
+                                <th>Username</th>
                                 <th>Giới tính</th>
-                                <th>Cấp Bậc</th>
-                                <th>Thao Tác</th>
+                                <th class="col-2">Vài trò</th>
+                                <th class="col-md-2">Thao Tác</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
                             @foreach ($users as $user)
                                 <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->email }}</td>
                                     <td>
-                                        @if ($user->phone)
-                                            {{ $user->phone }}
-                                        @else
-                                            <p>Chưa cập nhập số điện thoại</p>
-                                        @endif
+                                        <input type="checkbox">
                                     </td>
+                                    <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>
-                                        @if ($user->gender == '1')
+                                    <td>{{ $user->email }}</td>
+                                    <td class="col-2">{{ $user->phone }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td class="col-2">
+                                        @if ($user->gender == 1)
                                             <p>Nam</p>
                                         @else
-                                            <p>Nữ</p>
+                                        <p>Nữ</p>
                                         @endif
                                     </td>
-                                    <td>
-                                        @if ($user->roles == 'admin')
-                                            <p>Quản trị viên</p>
-                                        @else
+                                    <td class="col-2">
+                                        @if ($user->roles == 'customer')
                                             <p>Khách hàng</p>
+                                        @else
+                                        <p>Quản trị viên</p>
                                         @endif
                                     </td>
                                     <td>
@@ -70,19 +68,15 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item waves-effect"
                                                     href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                                                    <i class="mdi mdi-pencil-outline me-1"></i> Edit
+                                                    <i class="mdi mdi-pencil-outline me-1"></i> Chỉnh Sửa
                                                 </a>
-                                                <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.user.delete', ['id' => $user->id]) }}">
-                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Delete
+                                                <a class="dropdown-item waves-effect" href="javascript:void(0)"
+                                                    onclick="deletes({{ $user->id }})">
+                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
                                                 </a>
                                                 <a class="dropdown-item waves-effect"
                                                     href="{{ route('admin.user.show', ['id' => $user->id]) }}">
-                                                    <i class="mdi mdi-eye"></i> Show
-                                                </a>
-                                                <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.user.update', ['id' => $user->id]) }}">
-                                                    <i class="mdi mdi-update"></i> Update
+                                                    <i class="mdi mdi-eye"></i> Xem
                                                 </a>
                                             </div>
                                         </div>
@@ -91,9 +85,42 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
 
+                    <!-- Pagination links -->
+                    <div class="d-flex justify-content-end">
+                        {{-- {{ $users->links('pagination::bootstrap-4') }} --}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa sản phẩm <b class="text-dark">{{ $user->name ?? '' }}</b> vào <b class="text-danger">thùng rác</b> không?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <form id="deleteForm" action="" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Đồng Ý</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function deletes(id) {
+            var form = document.getElementById('deleteForm');
+            form.action = '{{ route('admin.user.delete', ['id' => ':id']) }}'.replace(':id', id);
+            $('#deleteModal').modal('show');
+        }
+    </script>
 @endsection

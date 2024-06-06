@@ -244,12 +244,7 @@
             <div class="row">
 
                 <div class="col-12 col-lg-12">
-                    <span class="copy-right">Bản quyền thuộc về <b>{{ ucfirst($contacts->name) }}</b>.</span>
-                    <span class="opacity1">
-                        Cung cấp bởi
-                        <a href="https://www.sapo.vn/?utm_campaign=cpn:kho_theme-plm:footer&amp;utm_source=Tu_nhien&amp;utm_medium=referral&amp;utm_content=fm:text_link-km:-sz:&amp;utm_term=&amp;campaign=kho_theme-sapo"
-                            rel="noopener" title="{{ ucfirst($contacts->name) }}">{{ ucfirst($contacts->name) }}</a>
-                    </span>
+                    <span class="copy-right">Bản quyền thuộc về <a href="https://www.facebook.com/Quocduy110204/">{{ ucfirst($contacts->name) }}</a></span>
                 </div>
 
 

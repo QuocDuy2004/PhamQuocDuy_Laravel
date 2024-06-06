@@ -6,16 +6,16 @@
                 <script>
                     document.write(new Date().getFullYear())
                 </script> Thiết kế bởi <span class="text-danger"><i
-                        class="tf-icons mdi mdi-heart"></i></span> by <a href="#" target="_blank"
+                        class="tf-icons mdi mdi-heart"></i></span> by <a href="https://www.facebook.com/QuocDuy110204"
                     class="footer-link fw-medium">
-                    {{-- {{ $contacts->name }} --}}
+                    {{ $domain }}
                 </a>
             </div>
             <div class="d-none d-lg-inline-block">
-                <a href="#" class="footer-link me-3" target="_blank">License</a>
-                <a href="#" target="_blank" class="footer-link me-3">More themess</a>
-                <a href="#" target="_blank" class="footer-link me-3">Documentation</a>
-                <a href="#" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+                <a href="#" class="footer-link me-3">License</a>
+                <a href="#" class="footer-link me-3">More themess</a>
+                <a href="#" class="footer-link me-3">Documentation</a>
+                <a href="#" class="footer-link d-none d-sm-inline-block">Support</a>
             </div>
         </div>
     </div>
@@ -36,7 +36,10 @@
 </div>
 <!-- / Layout wrapper -->
 <!--/ Layout Content -->
-
+<div id="largeImageContainer" style="display: none;">
+    <button class="close-btn" onclick="hideLargeImage()">Đóng</button>
+    <img id="largeImage" src="" alt="Không có hình ảnh hoặc lỗi">
+</div>
 
 <!-- Include Scripts -->
 <!-- BEGIN: Vendor JS-->
@@ -72,6 +75,9 @@
         largeImageContainer.style.display = 'none';
     }
 </script>
+<!-- Thêm modal thông báo -->
+
+
 </body>
 
 </html>

@@ -30,6 +30,12 @@
                                     </ul>
                                 </div>
                             @endif
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-floating form-floating-outline mb-4">

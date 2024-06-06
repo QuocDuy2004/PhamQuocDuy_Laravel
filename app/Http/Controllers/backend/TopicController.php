@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -12,7 +13,11 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return view('backend.topic.index');
+        $list = Topic::where("status", "!=", 0)
+        ->orderBy("created_at", "DESC")
+        ->select('id', 'slug', 'name', 'description','status')
+        ->paginate(7);
+        return view('backend.topic.index',compact("list"));
     }
 
     /**
