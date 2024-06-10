@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="noodp,index,follow" />
     <meta name="description" content="">
-    <title>@yield('title', 'Trang chủ') </title>
+    <title>{{ $domain }} - @yield('title', 'Trang chủ') </title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <meta name="keywords" content="Cập nhật sau">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -44,7 +44,7 @@
     <meta property="og:image:secure_url" content="assets/487/743/themes/912230/assets/logo.png?1710378319730">
 
 
-    <link rel="icon" href="{{ asset('assets/100/487/743/themes/912230/assets/favicon.png?1710378319730') }}"
+    <link rel="icon" href="{{ asset('assets/logo/favicon.png') }}"
         type="image/x-icon">
     <link rel="preload" as="script"
         href="{{ asset('assets/100/487/743/themes/912230/assets/jquery.js?1710378319730') }}">
@@ -76,7 +76,7 @@
 
     
 
-    <link rel="icon" href="{{ asset('assets/100/487/743/themes/912230/assets/favicon.png?1710378319730') }}"
+    <link rel="icon" href="{{ asset('assets/logo/favicon.png') }}"
         type="image/x-icon" />
     <link rel="preload" as="script"
         href="{{ asset('assets/100/487/743/themes/912230/assets/jquery.js?1710378319730') }}" />

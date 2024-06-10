@@ -9,4 +9,5 @@ class Topic extends Model
 {
     use HasFactory;
     protected $table = 'topic';
+    protected $fillable = ['name', 'slug', 'sort_order', 'description', 'status', 'created_at','created_by'];
 }

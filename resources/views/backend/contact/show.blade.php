@@ -1,5 +1,5 @@
 @extends('layouts.appadmin')
-@section('title', 'Chi tiết sản phẩm')
+@section('title', 'Chi tiết liên hệ')
 
 @section('content')
 

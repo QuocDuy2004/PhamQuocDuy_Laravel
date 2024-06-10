@@ -68,7 +68,7 @@
                                     </select>
                                     <label for="status">Trạng thái</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">Tạo brand</button>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Tạo thương hiệu</button>
                             </form>
 
 

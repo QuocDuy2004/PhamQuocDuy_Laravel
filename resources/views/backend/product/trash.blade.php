@@ -18,12 +18,21 @@
                         <a class="btn btn-info" href="{{ route('admin.product.index') }}">Back</a>
                     </div>
                 </h5>
-                @if (session('success'))
-                    <script>
-                        showSuccessMessage('{{ session('success') }}');
-                    </script>
-                @endif
+                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
@@ -59,9 +68,9 @@
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $product->image) }}"
+                                                    <img src="{{ asset('assets/images/product/' . $product->image) }}"
                                                         alt="{{ $product->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $product->image) }}')">
+                                                        onclick="showLargeImage('{{ asset('assets/images/product/' . $product->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>

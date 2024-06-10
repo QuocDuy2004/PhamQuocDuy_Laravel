@@ -2,16 +2,15 @@
     @foreach ($products as $product)
         <div class="col-xl-20 col-lg-3 col-sm-4 col-6 col-fix">
             <div class="product-grid">
-
                 <form action="cart/add" method="post" class="variants product-action" data-cart-form
-                    data-id="product-actions-31449433" enctype="multipart/form-data">
+                    data-id="product-actions-{{ $product->id }}" enctype="multipart/form-data">
                     <div class="product-thumbnail">
-                        <a class="image_thumb scale_hover" href="g-shock-ga-1000-1adr-nam-quartz-pin-day-cao-su"
-                            title="G-SHOCK GA-1000-1ADR – NAM – QUARTZ (PIN) – DÂY CAO SU">
+                        <a class="image_thumb scale_hover" href="{{ route('detail', ['slug' => $product->slug]) }}"
+                            title="{{ $product->slug }}">
                             <img width="234" height="234" class="lazyload image1"
                                 src="assets/100/487/743/themes/912230/assets/lazy.png?1710378319730"
                                 data-src="assets/thumb/large/100/487/743/products/ga-1000-1adr-699x699.png?v=1687061856183"
-                                alt="G-SHOCK GA-1000-1ADR – NAM – QUARTZ (PIN) – DÂY CAO SU">
+                                alt="{{ $product->slug }}">
                         </a>
 
                         <div class="vendoritem">
@@ -23,8 +22,11 @@
 
                         <input class="hidden" type="hidden" name="variantId" value="91048990" />
                         <div class="action">
-                            <button class="btn-cart btn-views add_to_cart " title="Mua ngay">
-                                Mua ngay
+                            <button class="btn-cart btn-views add_to_cart" title="Tùy chọn"
+                                data-product-id="{{ $product->id }}" data-toggle="modal"
+                                data-target="#popup-cart-mobile-{{ $product->id }}"
+                                data-product-name="{{ $product->name }}" data-product-price="{{ $product->price }}">
+                                Tùy chọn
                             </button>
                             <a title="Xem nhanh" href="g-shock-ga-1000-1adr-nam-quartz-pin-day-cao-su"
                                 data-handle="g-shock-ga-1000-1adr-nam-quartz-pin-day-cao-su"
@@ -78,6 +80,77 @@
 
             </div>
 
+        </div>
+        <div class="modal fade" id="popup-cart-mobile" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Xác nhận mua hàng</h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Hiển thị thông tin sản phẩm trong modal -->
+                        <div class="header-popcart">
+                            <div class="top-cart-header">
+                                <div class="media-content bodycart-mobile">
+                                    <div class="thumb-1x1">
+                                        <img id="modal-product-image"
+                                            src="{{ asset('assets/images/' . $product->image) }}"
+                                            alt="{{ $product->image }}">
+                                    </div>
+                                    <div class="body_content">
+                                        <h4 class="product-title" id="modal-product-name">{{ $product->name }}</h4>
+                                        <div class="product-new-price"><b
+                                                id="modal-product-price">{{ $product->price }}</b> VNĐ<span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach ($products as $product)
+                        <div class="modal fade" id="popup-cart-mobile-{{ $product->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+                            data-product-slug="{{ $product->slug }}">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-dark text-white">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Xác nhận mua hàng</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="header-popcart">
+                                            <div class="top-cart-header">
+                                                <div class="media-content bodycart-mobile">
+                                                    <div class="thumb-1x1">
+                                                        <img src="{{ asset('assets/images/' . $product->image) }}"
+                                                            alt="{{ $product->image }}">
+                                                    </div>
+                                                    <div class="body_content">
+                                                        <h4 class="product-title">{{ $product->name }}</h4>
+                                                        <div class="product-new-price"><b>{{ $product->price }}</b>
+                                                            VNĐ<span></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <p>Bạn có chắc chắn muốn thêm sản phẩm này vào giỏ hàng?</p>
+                                        <button type="button" class="btn btn-danger close-modal text-light"
+                                            data-dismiss="modal">Hủy</button>
+                                        <!-- Thêm vào giỏ hàng -->
+                                        <a href="{{ route('cart') }}" class="btn btn-warning text-light">Thêm vào giỏ
+                                            hàng</a>
+                                        <!-- Mua ngay -->
+                                        <a href="{{ route('detail', ['slug' => $product->slug]) }}"
+                                            class="btn btn-dark text-light">Mua ngay</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     @endforeach
 </div>

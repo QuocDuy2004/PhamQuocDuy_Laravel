@@ -49,9 +49,9 @@
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $product->image) }}"
+                                                    <img src="{{ asset('assets/images/product/' . $product->image) }}"
                                                         alt="{{ $product->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $product->image) }}')">
+                                                        onclick="showLargeImage('{{ asset('assets/images/product/' . $product->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>

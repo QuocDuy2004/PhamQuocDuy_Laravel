@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BannerController extends Controller
 {
@@ -32,39 +33,39 @@ class BannerController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    // Validate the request...
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'link' => 'required|string|max:1000',
-        'position' => 'required|string|max:255',
-        'description' => 'nullable|string|max:1000',
-        'status' => 'required|integer',
-    ]);
+    {
+        // Validate the request...
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'link' => 'required|string|max:1000',
+            'position' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
+            'status' => 'required|integer',
+        ]);
 
-    // Handle the image upload
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('assets/images'), $imageName);
-    } else {
-        $imageName = null; // or handle this case differently if image is required
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('assets/images/banner/'), $imageName);
+        } else {
+            $imageName = null; // or handle this case differently if image is required
+        }
+
+        // Create the banner
+        Banner::create([
+            'name' => $request->name,
+            'image' => $imageName,
+            'link' => $request->link,
+            'position' => $request->position,
+            'description' => $request->description,
+            'status' => $request->status,
+            'created_by' => 1,
+        ]);
+
+        return redirect()->route('admin.banner.create')->with('success', 'Tạo ngọn cờ thành công');
     }
-
-    // Create the banner
-    Banner::create([
-        'name' => $request->name,
-        'image' => $imageName,
-        'link' => $request->link,
-        'position' => $request->position,
-        'description' => $request->description,
-        'status' => $request->status,
-        'created_by' => 1,
-    ]);
-
-    return redirect()->route('admin.banner.create')->with('success', 'Tạo banner thành công');
-}
 
 
     /**
@@ -104,13 +105,13 @@ class BannerController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            $request->image->move(public_path('assets/images/banner/'), $imageName);
             $banner->image = $imageName;
         }
 
         $banner->save();
 
-        return redirect()->route('admin.banner.index')->with('success', 'Cập nhật banner thành công');
+        return redirect()->route('admin.banner.index')->with('success', 'Cập nhật ngọn cờ thành công');
     }
 
     /**
@@ -122,9 +123,9 @@ class BannerController extends Controller
         if ($banner) {
             $banner->status = 0;
             $banner->save();
-            return redirect()->route('admin.banner.index')->with('success', 'Xóa banner thành công');
+            return redirect()->route('admin.banner.index')->with('success', 'Xóa ngọn cờ thành công');
         }
-        return redirect()->route('admin.banner.index')->with('error', 'Không tìm thấy banner');
+        return redirect()->route('admin.banner.index')->with('error', 'Không tìm thấy ngọn cờ');
     }
 
     /**
@@ -153,13 +154,13 @@ class BannerController extends Controller
         $banner = Banner::where('id', $id)->where('status', 0)->first();
 
         if (!$banner) {
-            return redirect()->route('admin.banner.trash')->with('error', 'Không tìm thấy banner hoặc banner không ở trạng thái bị xóa');
+            return redirect()->route('admin.banner.trash')->with('error', 'Không tìm thấy ngọn cờ hoặc ngọn cờ không ở trạng thái bị xóa');
         }
 
         $banner->status = 1;
         $banner->save();
 
-        return redirect()->route('admin.banner.trash')->with('success', 'Khôi phục banner thành công');
+        return redirect()->route('admin.banner.trash')->with('success', 'Khôi phục ngọn cờ thành công');
     }
 
     /**
@@ -169,9 +170,14 @@ class BannerController extends Controller
     {
         $banner = Banner::find($id);
         if ($banner) {
+            $imageName = $banner->image;
+            $imagePath = public_path('assets/images/banner/' . $imageName);
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
             $banner->delete();
-            return redirect()->route('admin.banner.trash')->with('success', 'Xóa banner thành công');
+            return redirect()->route('admin.banner.trash')->with('success', 'Xóa ngọn cờ thành công');
         }
-        return redirect()->route('admin.banner.trash')->with('error', 'Banner không tồn tại');
+        return redirect()->route('admin.banner.trash')->with('error', 'Ngọn cờ không tồn tại');
     }
 }

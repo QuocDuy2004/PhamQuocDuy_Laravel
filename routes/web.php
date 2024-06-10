@@ -12,7 +12,7 @@ use App\Http\Controllers\backend\UserController as UsersControllers;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\IntroduceController;
 use App\Http\Controllers\frontend\NewsController;
-use App\Http\Controllers\frontend\SystemController;
+use App\Http\Controllers\frontend\SystemController; 
 
 use App\Http\Controllers\frontend\ErrorController;
 
@@ -25,7 +25,6 @@ use App\Http\Controllers\frontend\ProductController as SanphamController;
 
 use App\Http\Controllers\frontend\ProductDetailController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 //Admin
 use App\Http\Controllers\backend\ProductController;
@@ -37,6 +36,8 @@ use App\Http\Controllers\backend\OrderdetailController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\TopicController;
 use App\Http\Controllers\backend\BannerController;
+use App\Http\Controllers\frontend\CheckoutController;
+
 
 //Home
 Route::get('/', [HomeController::class, 'Home'])->name('home');
@@ -45,7 +46,8 @@ Route::get('/tin-tuc', [NewsController::class, 'News'])->name('news');
 Route::get('/home', [ContactController::class, 'home']);
 //Product
 Route::get('/san-pham', [SanphamController::class, 'Product'])->name('product');
-Route::get('/chi-tiet-san-pham/{slug}', [ProductDetailController::class, 'ProductDetail'])->name('detail');
+Route::get('chi-tiet-san-pham/{slug}', [ProductDetailController::class, 'ProductDetail'])->name('detail');
+Route::get('/checkout', [CheckoutController::class, 'Checkout'])->name('checkout');
 Route::post('cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/lien-he', [ContactController::class, 'Contact'])->name('contact');
 
@@ -56,6 +58,7 @@ Route::get('/gio-hang', [CartController::class, 'Cart'])->name('cart');
 Route::get('/san-pham-yeu-thich', [FavouriteController::class, 'Favourite'])->name('favourite');
 
 Route::get('/logout', [AuthClientController::class, 'Logout'])->name('logout');
+
 Route::prefix('/auth')->middleware('guest')->group(function () {
     Route::get('/login', [AuthClientController::class, 'LoginPage'])->name('login');
     Route::post('/login', [AuthClientController::class, 'Login'])->name('login.post');
@@ -86,9 +89,13 @@ Route::get('/he-thong-cua-hang', [SystemController::class, 'System'])->name('sys
 
 //Panel Admin
 Route::prefix('admin')->middleware('guest')->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'Dashboard'])->name('admin.dashboard.index');
-    Route::get('auth/login', [AuthClientController::class, 'LoginAdminPage'])->name('admin.login');
-
+    Route::prefix('/auth')->middleware('guest')->group(function () {
+        Route::get('login', [AuthClientController::class, 'LoginAdminPage'])->name('admin.login');
+        Route::post('login', [AuthClientController::class, 'Login'])->name('login.post');
+        Route::post('login', [AuthClientController::class, 'LoginAdmin'])->name('loginadmin.post');
+        Route::get('/logout', [AuthClientController::class, 'LogoutAdmin'])->name('admin.logout');
+    });
+    Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('admin.dashboard.index');
 
     Route::prefix('category')->middleware('guest')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
@@ -100,7 +107,7 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::put('update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
         Route::get('status/{id}', [CategoryController::class, 'status'])->name('admin.category.status');
         Route::delete('delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
-        Route::get('show/{id}', [ProductController::class, 'show'])->name('admin.category.show');
+        Route::get('show/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
 
         Route::delete('destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
         Route::post('restore/{id}', [CategoryController::class, 'restore'])->name('admin.category.restore');
@@ -147,11 +154,13 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('edit/{id}', [ContactControllers::class, 'edit'])->name('admin.contact.edit');
         Route::put('update/{id}', [ContactControllers::class, 'update'])->name('admin.contact.update');
         Route::get('status/{id}', [ContactControllers::class, 'status'])->name('admin.contact.status');
-        Route::get('delete/{id}', [ContactControllers::class, 'delete'])->name('admin.contact.delete');
+        Route::delete('delete/{id}', [ContactControllers::class, 'delete'])->name('admin.contact.delete');
         Route::get('show/{id}', [ContactControllers::class, 'show'])->name('admin.contact.show');
-        Route::get('destroy/{id}', [ContactControllers::class, 'destroy'])->name('admin.contact.destroy');
-        Route::delete('restore/{id}', [ContactControllers::class, 'restore'])->name('admin.contact.restore');
+
+        Route::delete('destroy/{id}', [ContactControllers::class, 'destroy'])->name('admin.contact.destroy');
+        Route::post('restore/{id}', [ContactControllers::class, 'restore'])->name('admin.contact.restore');
     });
+
 
     Route::prefix('menu')->middleware('guest')->group(function () {
         Route::get('/', [MenuController::class, 'index'])->name('admin.menu.index');
@@ -162,10 +171,11 @@ Route::prefix('admin')->middleware('guest')->group(function () {
         Route::get('edit/{id}', [MenuController::class, 'edit'])->name('admin.menu.edit');
         Route::put('update/{id}', [MenuController::class, 'update'])->name('admin.menu.update');
         Route::get('status/{id}', [MenuController::class, 'status'])->name('admin.menu.status');
-        Route::get('delete/{id}', [MenuController::class, 'delete'])->name('admin.menu.delete');
+        Route::delete('delete/{id}', [MenuController::class, 'delete'])->name('admin.menu.delete');
         Route::get('show/{id}', [MenuController::class, 'show'])->name('admin.menu.show');
-        Route::get('destroy/{id}', [MenuController::class, 'destroy'])->name('admin.menu.destroy');
-        Route::delete('restore/{id}', [MenuController::class, 'restore'])->name('admin.menu.restore');
+
+        Route::delete('destroy/{id}', [MenuController::class, 'destroy'])->name('admin.menu.destroy');
+        Route::post('restore/{id}', [MenuController::class, 'restore'])->name('admin.menu.restore');
     });
 
     Route::prefix('order')->middleware('guest')->group(function () {

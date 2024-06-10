@@ -45,13 +45,16 @@
                                 <td>
                                     <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                         <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up">
-                                            @if ($posts->image == null)
+                                            class="avatar avatar-xs pull-up" aria-label="Lilian Fuller"
+                                            data-bs-original-title="Lilian Fuller">
+                                            @if ($post->image == null)
                                                 <img src="{{ asset('assets/load.gif') }}" alt="gif"
-                                                    class="rounded-circle">
+                                                    class="rounded-circle"
+                                                    onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                             @else
-                                                <img src="{{ asset('assets/images/' . $posts->image) }}"
-                                                    alt="{{ $posts->image }}" class="rounded-circle">
+                                                <img src="{{ asset('assets/images/post/' . $post->image) }}"
+                                                    alt="{{ $post->image }}" class="rounded-circle"
+                                                    onclick="showLargeImage('{{ asset('assets/images/post/' . $post->image) }}')">
                                             @endif
                                         </li>
                                     </ul>

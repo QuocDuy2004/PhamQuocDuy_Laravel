@@ -47,7 +47,7 @@ class BrandController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('assets/images'), $imageName);
+            $image->move(public_path('assets/images/brand/'), $imageName);
         } else {
             $imageName = null; // or handle this case differently if image is required
         }
@@ -63,7 +63,7 @@ class BrandController extends Controller
             'created_by' => 1,
         ]);
 
-        return redirect()->route('admin.brand.create')->with('success', 'Tạo sản phẩm thành công');
+        return redirect()->route('admin.brand.create')->with('success', 'Tạo thương hiệu thành công');
     }
 
     /**
@@ -105,13 +105,13 @@ class BrandController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            $request->image->move(public_path('assets/images/brand/'), $imageName);
             $brand->image = $imageName;
         }
 
         $brand->save();
 
-        return redirect()->route('admin.brand.index')->with('success', 'Cập nhật thành công');
+        return redirect()->route('admin.brand.index')->with('success', 'Cập nhật thương hiệu thành công');
     }
 
     /**
@@ -123,9 +123,9 @@ class BrandController extends Controller
         if ($brand) {
             $brand->status = 0;
             $brand->save();
-            return redirect()->route('admin.brand.index')->with('success', 'Xóa sản phẩm thành công');
+            return redirect()->route('admin.brand.index')->with('success', 'Xóa thương hiệu thành công');
         }
-        return redirect()->route('admin.brand.index')->with('error', 'Không tìm thấy sản phẩm');
+        return redirect()->route('admin.brand.index')->with('error', 'Không tìm thấy thương hiệu');
     }
 
     public function trash()
@@ -139,7 +139,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         if ($brand) {
             $brand->delete();
-            return redirect()->route('admin.brand.trash')->with('success', 'Xóa thành công');
+            return redirect()->route('admin.brand.trash')->with('success', 'Xóa thương hiệu thành công');
         }
         return redirect()->route('admin.brand.trash')->with('error', 'Sản phẩm không tồn tại');
     }
@@ -149,7 +149,7 @@ class BrandController extends Controller
         $brand = Brand::where('id', $id)->where('status', 0)->first();
 
         if (!$brand) {
-            return redirect()->route('admin.brand.trash')->with('error', 'Không tìm thấy sản phẩm hoặc sản phẩm không ở trạng thái bị xóa');
+            return redirect()->route('admin.brand.trash')->with('error', 'Không tìm thấy thương hiệu hoặc thương hiệu không ở trạng thái bị xóa');
         }
 
         $request->validate([
@@ -166,11 +166,11 @@ class BrandController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            $request->image->move(public_path('assets/images/brand/'), $imageName);
             $brand->image = $imageName;
         }
 
         $brand->save();
-        return redirect()->route('admin.brand.trash')->with('success', 'Khôi phục thành công');
+        return redirect()->route('admin.brand.trash')->with('success', 'Khôi phục thương hiệu thành công');
     }
 }

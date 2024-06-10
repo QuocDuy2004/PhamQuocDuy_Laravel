@@ -9,7 +9,7 @@
             <div class="card">
                 <h5 class="card-header">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <a class="btn btn-success me-2" href="{{ route('admin.brand.create') }}">Tạo Sản Phẩm</a>
+                        <a class="btn btn-success me-2" href="{{ route('admin.brand.create') }}">Tạo thương hiệu</a>
                         <a class="btn btn-danger" href="{{ route('admin.brand.trash') }}">Thùng Rác</a>
                     </div>
                 </h5>
@@ -69,9 +69,9 @@
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $brand->image) }}"
+                                                    <img src="{{ asset('assets/images/brand/' . $brand->image) }}"
                                                         alt="{{ $brand->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $brand->image) }}')">
+                                                        onclick="showLargeImage('{{ asset('assets/images/brand/' . $brand->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>
@@ -120,7 +120,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa thương hiệu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

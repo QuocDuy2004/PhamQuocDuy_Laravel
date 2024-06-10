@@ -1,5 +1,5 @@
 @extends('layouts.appadmin')
-@section('title', 'Dashboard')
+@section('title', 'Trang thống kê')
 
 @section('content')
     <div class="content-wrapper">
@@ -12,7 +12,14 @@
                 <div class="col-md-12 col-lg-4">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-1">Xin chào {{ $hello->name }} 🎉</h4>
+                            @if (Auth::guard('admin')->check())
+                                <h4 class="card-title mb-1">Xin chào {{ Auth::guard('admin')->user()->name }}🎉</h4>
+                            @else
+                                <script>
+                                    window.location = "{{ route('admin.login') }}"
+                                </script>
+                            @endif
+
                             <p class="pb-0">Best seller of the month</p>
                             <h4 class="text-primary mb-1">$42.8k</h4>
                             <p class="mb-2 pb-1">78% of target 🚀</p>
@@ -36,13 +43,9 @@
                                 <div class="dropdown">
                                     <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical mdi-24px"></i>
+
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                                        <a class="dropdown-item waves-effect" href="javascript:void(0);">Refresh</a>
-                                        <a class="dropdown-item waves-effect" href="javascript:void(0);">Share</a>
-                                        <a class="dropdown-item waves-effect" href="javascript:void(0);">Update</a>
-                                    </div>
+
                                 </div>
                             </div>
                             <p class="mt-3"><span class="fw-medium">Total 48.5% growth</span> 😎 this
@@ -58,7 +61,7 @@
                                             </div>
                                         </div>
                                         <div class="ms-3">
-                                            <div class="small mb-1">Giảm giá</div>
+                                            <div class="small mb-1">Sản phẩm đã bán</div>
                                             <h5 class="mb-0">245k</h5>
                                         </div>
                                     </div>
@@ -72,7 +75,7 @@
                                         </div>
                                         <div class="ms-3">
                                             <div class="small mb-1">Thành viên</div>
-                                            <h5 class="mb-0">12.5k</h5>
+                                            <h5 class="mb-0">{{ $userCount }}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +88,7 @@
                                         </div>
                                         <div class="ms-3">
                                             <div class="small mb-1">Sản phẩm</div>
-                                            <h5 class="mb-0">1.54k</h5>
+                                            <h5 class="mb-0">{{ $productCount }}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -117,13 +120,7 @@
                                 <div class="dropdown">
                                     <button class="btn p-0" type="button" id="weeklyOverviewDropdown"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical mdi-24px"></i>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="weeklyOverviewDropdown">
-                                        <a class="dropdown-item waves-effect" href="javascript:void(0);">Refresh</a>
-                                        <a class="dropdown-item waves-effect" href="javascript:void(0);">Share</a>
-                                        <a class="dropdown-item waves-effect" href="javascript:void(0);">Update</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -410,16 +407,9 @@
                             <div class="dropdown">
                                 <button class="btn p-0" type="button" id="totalEarnings" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical mdi-24px"></i>
+
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalEarnings">
-                                    <a class="dropdown-item waves-effect" href="javascript:void(0);">Last
-                                        28 Days</a>
-                                    <a class="dropdown-item waves-effect" href="javascript:void(0);">Last
-                                        Month</a>
-                                    <a class="dropdown-item waves-effect" href="javascript:void(0);">Last
-                                        Year</a>
-                                </div>
+
                             </div>
                         </div>
                         <div class="card-body">
@@ -717,13 +707,9 @@
                                     <div class="dropdown">
                                         <button class="btn p-0" type="button" id="totalProfitID"
                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical mdi-24px"></i>
+
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
-                                            <a class="dropdown-item waves-effect" href="javascript:void(0);">Refresh</a>
-                                            <a class="dropdown-item waves-effect" href="javascript:void(0);">Share</a>
-                                            <a class="dropdown-item waves-effect" href="javascript:void(0);">Update</a>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="card-body mt-mg-1">
@@ -749,13 +735,9 @@
                                     <div class="dropdown">
                                         <button class="btn p-0" type="button" id="newProjectID"
                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical mdi-24px"></i>
+
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="newProjectID">
-                                            <a class="dropdown-item waves-effect" href="javascript:void(0);">Refresh</a>
-                                            <a class="dropdown-item waves-effect" href="javascript:void(0);">Share</a>
-                                            <a class="dropdown-item waves-effect" href="javascript:void(0);">Update</a>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="card-body mt-mg-1">
@@ -809,10 +791,10 @@
                                                         <clipPath id="forecastMaskepz552io"></clipPath>
                                                         <clipPath id="nonForecastMaskepz552io"></clipPath>
                                                         <clipPath id="gridRectMarkerMaskepz552io">
-                                                            <rect id="SvgjsRect1131" width="125.6" height="84"
-                                                                x="-2" y="-2" rx="0" ry="0"
-                                                                opacity="1" stroke-width="0" stroke="none"
-                                                                stroke-dasharray="0" fill="#fff"></rect>
+                                                            <rect id="SvgjsRect1131" width="125.6" height="84" x="-2"
+                                                                y="-2" rx="0" ry="0" opacity="1"
+                                                                stroke-width="0" stroke="none" stroke-dasharray="0"
+                                                                fill="#fff"></rect>
                                                         </clipPath>
                                                     </defs>
                                                     <rect id="SvgjsRect1129" width="0" height="80" x="0" y="0"
@@ -1017,7 +999,7 @@
                         <!--/ Sessions chart -->
                     </div>
                 </div>
-        
+
             </div>
 
         </div>

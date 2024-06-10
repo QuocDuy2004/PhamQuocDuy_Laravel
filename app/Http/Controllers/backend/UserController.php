@@ -59,7 +59,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('assets/images'), $imageName);
+            $image->move(public_path('assets/images/user/'), $imageName);
         }
 
         $address = $request->city . ' - ' . $request->district . ' - ' . $request->ward;
@@ -127,7 +127,7 @@ class UserController extends Controller
 
     if ($request->hasFile('image')) {
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('assets/images'), $imageName);
+        $request->image->move(public_path('assets/images/user/'), $imageName);
         $user->image = $imageName;
     }
 
@@ -161,8 +161,8 @@ class UserController extends Controller
 
     public function trash()
     {
-        $user = User::where('status', 0)->get();
-        return view('backend.user.trash', compact('user'));
+        $list = User::where('status', 0)->get();
+        return view('backend.user.trash', compact('list'));
     }
 
     public function destroy($id)

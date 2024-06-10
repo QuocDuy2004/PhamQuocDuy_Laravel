@@ -7,9 +7,7 @@
 
             <div class="container">
                 <div class="title-bread-crumb">
-
                     Đăng nhập tài khoản
-
                 </div>
                 <ul class="breadcrumb">
                     <li class="home">
@@ -22,9 +20,7 @@
                                     class=""></path>
                             </svg>&nbsp;</span>
                     </li>
-
                     <li><strong><span>Đăng nhập tài khoản</span></strong></li>
-
                 </ul>
             </div>
         </section>
@@ -48,19 +44,28 @@
                                         <h1 class="title_heads a-center"><span>Đăng nhập</span></h1>
                                         <div id="login" class="section">
 
-                                            @if ($message = Session::get('error'))
-                                            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
-                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                {{ $message }}
-                                            </div>
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             @endif
-                                            @if ($message = Session::get('success'))
-                                            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
-                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                {{ $message }}
-                                            </div>
+
+                                            @if (session('success'))
+                                                <div class="alert alert-success">
+                                                    {{ session('success') }}
+                                                </div>
+                                                <script>
+                                                    setTimeout(function() {
+                                                        window.location.href = "{{ route('home') }}";
+                                                    }, 3000);
+                                                </script>
                                             @endif
-                                            
+
+
                                             <form method="post" action="{{ route('login.post') }}">
                                                 @csrf
                                                 <input name="FormType" type="hidden" value="customer_login"><input
@@ -81,16 +86,22 @@
                                                             <input type="password" class="form-control form-control-lg"
                                                                 value="" name="password" id="customer_password"
                                                                 placeholder="Mật khẩu" required="">
-                                                            <span id="eye-icon" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                                                                    <path d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"></path>
-                                                                    <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"></path>
+                                                            <span id="eye-icon"
+                                                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10"
+                                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path
+                                                                        d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
+                                                                        clip-rule="evenodd"></path>
+                                                                    <path
+                                                                        d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z">
+                                                                    </path>
                                                                 </svg>
                                                             </span>
                                                         </div>
                                                     </fieldset>
-                                                    
-                                        
+
+
                                                     <div class="text-end">
                                                         <label for="remember">
                                                             Ghi nhớ <input type="checkbox" id="remember">
@@ -107,7 +118,8 @@
 
                                         <div class="h_recover" style="display:none;">
                                             <div id="recover-password" class="form-signup page-login">
-                                                <form method="post" action="{{ route('forgot.password.post') }}" accept-charset="UTF-8">
+                                                <form method="post" action="{{ route('forgot.password.post') }}"
+                                                    accept-charset="UTF-8">
                                                     @csrf
                                                     <div class="form-signup" style="color: red;">
                                                         @if ($errors->any())
@@ -123,32 +135,29 @@
                                                     <div class="form-signup clearfix">
                                                         <fieldset class="form-group">
                                                             <input type="email"
-                                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
-                                                                   class="form-control form-control-lg"
-                                                                   value="{{ old('email') }}"
-                                                                   name="email"
-                                                                   id="recover-email"
-                                                                   placeholder="Email"
-                                                                   required="">
+                                                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
+                                                                class="form-control form-control-lg"
+                                                                value="{{ old('email') }}" name="email"
+                                                                id="recover-email" placeholder="Email" required="">
                                                         </fieldset>
                                                     </div>
                                                     <div class="action_bottom">
-                                                        <input class="btn btn-style btn_50" style="margin-top: 0px;" type="submit" value="Lấy lại mật khẩu">
+                                                        <input class="btn btn-style btn_50" style="margin-top: 0px;"
+                                                            type="submit" value="Lấy lại mật khẩu">
                                                     </div>
                                                 </form>
-                                                
+
                                             </div>
                                         </div>
                                         <div class="block social-login--facebooks">
                                             <p class="a-center">
                                                 Hoặc đăng nhập bằng
                                             </p>
-                                            <a href="{{ route('login.facebook') }}" class="social-login--facebook"
-                                                ><img width="129px" height="37px"
-                                                    alt="facebook-login-button"
+                                            <a href="{{ route('login.facebook') }}" class="social-login--facebook"><img
+                                                    width="129px" height="37px" alt="facebook-login-button"
                                                     src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg"></a>
-                                            <a href="{{ route('login.google') }}" class="social-login--google"><img width="129px" height="37px"
-                                                    alt="google-login-button"
+                                            <a href="{{ route('login.google') }}" class="social-login--google"><img
+                                                    width="129px" height="37px" alt="google-login-button"
                                                     src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
                                         </div>
                                     </div>
@@ -189,5 +198,5 @@
             }
         </script>
     </div>
-    
+
 @endsection

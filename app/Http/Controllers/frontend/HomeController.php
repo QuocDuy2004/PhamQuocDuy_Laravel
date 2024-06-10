@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function Home(){
+    public function Home()
+    {
         if (!Auth::check()) {
             return redirect()->route('login');
         }

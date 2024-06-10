@@ -65,22 +65,6 @@
 
 
             <ul class="menu-sub">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <li class="menu-item ">
                     <a href="#" class="menu-link">
                         <div>Cấu hình hệ thống</div>
@@ -88,14 +72,6 @@
                 </li>
             </ul>
         </li>
-
-
-
-
-
-
-
-
         <li class="menu-item ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
                 <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
@@ -127,6 +103,43 @@
                 <li class="menu-item ">
                     <a href="{{ route('admin.brand.index') }}" class="menu-link">
                         <div>Quản lý thương hiệu</div>
+                    </a>
+
+
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-item ">
+            <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
+                <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
+                <div>Đề Tài</div>
+            </a>
+
+
+            <ul class="menu-sub">
+
+                <li class="menu-item ">
+                    <a href="{{ route('admin.topic.index') }}" class="menu-link">
+                        <div>Quản lý đề tài</div>
+                    </a>
+
+
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-item ">
+            <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
+                <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
+                <div>Menu</div>
+            </a>
+
+            <ul class="menu-sub">
+
+                <li class="menu-item ">
+                    <a href="{{ route('admin.menu.index') }}" class="menu-link">
+                        <div>Quản lý Menu</div>
                     </a>
 
 

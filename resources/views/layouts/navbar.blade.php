@@ -61,7 +61,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item waves-effect" href="{{ route('logout') }}">
+                            <a class="dropdown-item waves-effect" href="{{ route('admin.logout') }}">
                                 <i class="mdi mdi-power me-1 mdi-20px"></i>
                                 <span class="align-middle">Log Out</span>
                             </a>

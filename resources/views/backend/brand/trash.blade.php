@@ -67,9 +67,9 @@
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $brand->image) }}"
+                                                    <img src="{{ asset('assets/images/brand/' . $brand->image) }}"
                                                         alt="{{ $brand->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $brand->image) }}')">
+                                                        onclick="showLargeImage('{{ asset('assets/images/brand/' . $brand->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>
@@ -138,11 +138,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa thương hiệu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa sản phẩm <b class="text-dark"><span id="brandName"></span></b> <b
+                    Bạn có chắc chắn muốn xóa thương hiệu <b class="text-dark"><span id="brandName"></span></b> <b
                         class="text-danger">vĩnh viễn</b> không?
                 </div>
 

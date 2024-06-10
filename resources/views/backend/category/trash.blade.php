@@ -41,8 +41,9 @@
                                 <th>ID</th>
                                 <th class="col-md-2">Hình Ảnh</th>
                                 <th>Tên</th>
-                                <th>Đề Tài</th>
                                 <th>Đường Dẫn</th>
+                                <th>Danh Mục Cha</th>
+                                <th>Sắp Xếp</th>
                                 <th>Nội Dung</th>
                                 <th>Ngày Tạo</th>
                                 <th>Ngày Cập Nhập</th>
@@ -66,9 +67,9 @@
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $category->image) }}"
+                                                    <img src="{{ asset('assets/images/category/' . $category->image) }}"
                                                         alt="{{ $category->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $category->image) }}')">
+                                                        onclick="showLargeImage('{{ asset('assets/images/category/' . $category->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>
@@ -79,8 +80,9 @@
                                         <img id="largeImage" src="" alt="Không có hình ảnh hoặc lỗi">
                                     </div>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->detail }}</td>
                                     <td>{{ $category->slug }}</td>
+                                    <td>{{ $category->parent_id }}</td>
+                                    <td>{{ $category->sort_order }}</td>
                                     <td>{{ $category->description }}</td>
                                     <td>{{ $category->created_at }}</td>
                                     <td>{{ $category->updated_at }}</td>
@@ -137,11 +139,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa danh mục</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa thể loại <b class="text-dark"><span id="categoryName"></span></b> vào <b
+                    Bạn có chắc chắn muốn xóa danh mục <b class="text-dark"><span id="categoryName"></span></b> vào <b
                         class="text-danger">thùng rác</b> không?
                 </div>
                 

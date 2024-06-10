@@ -18,11 +18,21 @@
                         <a class="btn btn-info" href="{{ route('admin.user.index') }}">Back</a>
                     </div>
                 </h5>
-                @if (session('success'))
-                    <script>
-                        showSuccessMessage('{{ session('success') }}');
-                    </script>
-                @endif
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
                 <div class="table-responsive text-nowrap">
                     <table class="table">
@@ -44,24 +54,24 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($user as $users)
+                            @foreach ($list as $user)
                                 <tr>
-                                    <td><input type="checkbox" name="selected_ids[]" value="{{ $users->id }}"
+                                    <td><input type="checkbox" name="selected_ids[]" value="{{ $user->id }}"
                                             class="select-checkbox"></td>
-                                    <td>{{ $users->id }}</td>
+                                    <td>{{ $user->id }}</td>
                                     <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                        <ul class="list-unstyled user-list m-0 avatar-group d-flex align-items-center">
                                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                                                 class="avatar avatar-xs pull-up" aria-label="Lilian Fuller"
                                                 data-bs-original-title="Lilian Fuller">
-                                                @if ($users->image == null)
+                                                @if ($user->image == null)
                                                     <img src="{{ asset('assets/load.gif') }}" alt="gif"
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $users->image) }}"
-                                                        alt="{{ $users->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $users->image) }}')">
+                                                    <img src="{{ asset('assets/images/' . $user->image) }}"
+                                                        alt="{{ $user->image }}" class="rounded-circle"
+                                                        onclick="showLargeImage('{{ asset('assets/images/' . $user->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>
@@ -71,20 +81,20 @@
                                         <button class="close-btn" onclick="hideLargeImage()">Đóng</button>
                                         <img id="largeImage" src="" alt="Không có hình ảnh hoặc lỗi">
                                     </div>
-                                    <td>{{ $users->name }}</td>
-                                    <td>{{ $users->detail }}</td>
-                                    <td>{{ $users->slug }}</td>
-                                    <td>{{ $users->description }}</td>
-                                    <td>{{ $users->price }}</td>
-                                    <td>{{ $users->pricesale }}</td>
-                                    <td>{{ $users->created_at }}</td>
-                                    <td>{{ $users->updated_at }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->detail }}</td>
+                                    <td>{{ $user->slug }}</td>
+                                    <td>{{ $user->description }}</td>
+                                    <td>{{ $user->price }}</td>
+                                    <td>{{ $user->pricesale }}</td>
+                                    <td>{{ $user->created_at }}</td>
+                                    <td>{{ $user->updated_at }}</td>
                                     <td>
-                                        @if ($users->status == 0)
+                                        @if ($user->status == 0)
                                             <p class="text-danger">Đang ở thùng rác</p>
-                                        @elseif ($users->status == 1)
+                                        @elseif ($user->status == 1)
                                             <p class="text-success">Hoạt động</p>
-                                        @elseif ($users->status == 2)
+                                        @elseif ($user->status == 2)
                                             <p class="text-warning">Ngưng hoạt động</p>
                                         @endif
                                     </td>
@@ -96,11 +106,12 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <button type="button" class="dropdown-item waves-effect"
-                                                    onclick="confirmDelete({{ $users->id }})">
+                                                    onclick="confirmDelete({{ $user->id }}, '{{ $user->name }}')">
                                                     <i class="mdi mdi-trash-can-outline me-1"></i> Xóa vĩnh viễn
                                                 </button>
+
                                                 <form id="deleteForm"
-                                                    action="{{ route('admin.user.destroy', $users->id) }}"
+                                                    action="{{ route('admin.user.destroy', $user->id) }}"
                                                     method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
@@ -109,7 +120,7 @@
                                                     </button>
                                                 </form>
                                                 <form
-                                                    action="{{ route('admin.user.restore', ['id' => $users->id]) }}"
+                                                    action="{{ route('admin.user.restore', ['id' => $user->id]) }}"
                                                     method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <button type="submit" class="dropdown-item waves-effect">
@@ -132,12 +143,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa bài viết</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa sản phẩm <b class="text-dark">{{ $users->name }}</b> <b class="text-danger">vĩnh viễn</b> không?
+                    Bạn có chắc chắn muốn xóa bài viết <b class="text-dark"><span id="userName"></span></b> <b
+                        class="text-danger">vĩnh viễn</b> không?
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     <button type="submit" class="btn btn-danger" form="deleteForm">Xóa</button>
@@ -146,12 +159,15 @@
         </div>
     </div>
     <script>
-        function confirmDelete(userId) {
+        function confirmDelete(userId, userName) {
             var form = document.getElementById('deleteForm');
             form.action = '{{ route('admin.user.destroy', '') }}' + '/' + userId;
+            var userNameElement = document.getElementById('userName');
+            userNameElement.textContent = userName;
             $('#deleteModal').modal('show');
         }
     </script>
+
     @push('scripts')
         <script>
             document.getElementById('selectAll').addEventListener('change', function(e) {

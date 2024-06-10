@@ -1,5 +1,5 @@
 @extends('layouts.appadmin')
-@section('title', 'Chi tiết thể loại')
+@section('title', 'Chi tiết danh mục')
 
 @section('content')
 
@@ -16,7 +16,7 @@
             <div class="card">
                 <h5 class="card-header">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <a class="btn btn-info" href="{{ route('admin.product.index') }}">Back</a>
+                        <a class="btn btn-info" href="{{ route('admin.category.index') }}">Back</a>
                     </div>
                 </h5>
 
@@ -26,15 +26,12 @@
                             <tr>
                                 <th>#</th>
                                 <th>ID</th>
-                                <th>ID Thể Loại</th>
-                                <th>ID Thương Hiệu</th>
                                 <th class="col-md-2">Hình Ảnh</th>
                                 <th>Tên</th>
-                                <th>Đề Tài</th>
                                 <th>Đường Dẫn</th>
-                                <th>Nội Dung</th>
-                                <th>Giá</th>
-                                <th>Giá Giảm</th>
+                                <th>Danh mục cha</th>
+                                <th>Vị trí</th>
+                                <th>Mô tả</th>
                                 <th>Ngày Tạo</th>
                                 <th>Ngày Cập Nhập</th>
                                 <th>Trạng Thái</th>
@@ -42,27 +39,25 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($product as $products)
+                            @foreach ($categorys as $category)
                                 <tr>
                                     <td>
                                         <input type="checkbox">
                                     </td>
-                                    <td>{{ $products->id }}</td>
-                                    <td>{{ $products->category_id }}</td>
-                                    <td>{{ $products->brand_id }}</td>
+                                    <td>{{ $category->id }}</td>
                                     <td>
                                         <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                                                 class="avatar avatar-xs pull-up" aria-label="Lilian Fuller"
                                                 data-bs-original-title="Lilian Fuller">
-                                                @if ($products->image == null)
+                                                @if ($category->image == null)
                                                     <img src="{{ asset('assets/load.gif') }}" alt="gif"
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $products->image) }}"
-                                                        alt="{{ $products->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $products->image) }}')">
+                                                    <img src="{{ asset('assets/images/category/' . $category->image) }}"
+                                                        alt="{{ $category->image }}" class="rounded-circle"
+                                                        onclick="showLargeImage('{{ asset('assets/images/category/' . $category->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>
@@ -72,20 +67,19 @@
                                         <button class="close-btn" onclick="hideLargeImage()">Đóng</button>
                                         <img id="largeImage" src="" alt="Không có hình ảnh hoặc lỗi">
                                     </div>
-                                    <td>{{ $products->name }}</td>
-                                    <td>{{ $products->detail }}</td>
-                                    <td>{{ $products->slug }}</td>
-                                    <td>{{ $products->description }}</td>
-                                    <td>{{ $products->price }}</td>
-                                    <td>{{ $products->pricesale }}</td>
-                                    <td>{{ $products->created_at }}</td>
-                                    <td>{{ $products->updated_at }}</td>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->slug }}</td>
+                                    <td>{{ $category->parent_id }}</td>
+                                    <td>{{ $category->sort_order }}</td>
+                                    <td>{{ $category->description }}</td>
+                                    <td>{{ $category->created_at }}</td>
+                                    <td>{{ $category->updated_at }}</td>
                                     <td>
-                                        @if ($products->status == 0)
+                                        @if ($category->status == 0)
                                             <p class="text-danger">Đang ở thùng rác</p>
-                                        @elseif ($products->status == 1)
+                                        @elseif ($category->status == 1)
                                             <p class="text-success">Hoạt động</p>
-                                        @elseif ($products->status == 2)
+                                        @elseif ($category->status == 2)
                                             <p class="text-warning">Ngưng hoạt động</p>
                                         @endif
                                     </td>
@@ -97,15 +91,15 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.product.edit', ['id' => $products->id]) }}">
+                                                    href="{{ route('admin.category.edit', ['id' => $category->id]) }}">
                                                     <i class="mdi mdi-pencil-outline me-1"></i> Chính sửa
                                                 </a>
                                                 <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.product.delete', ['id' => $products->id]) }}">
+                                                    href="{{ route('admin.category.delete', ['id' => $category->id]) }}">
                                                     <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
                                                 </a>
                                                 <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.product.show', ['id' => $products->id]) }}">
+                                                    href="{{ route('admin.category.show', ['id' => $category->id]) }}">
                                                     <i class="mdi mdi-eye"></i> Xem
                                                 </a>
                                             </div>

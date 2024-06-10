@@ -67,9 +67,9 @@
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $banner->image) }}"
+                                                    <img src="{{ asset('assets/images/banner/' . $banner->image) }}"
                                                         alt="{{ $banner->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $banner->image) }}')">
+                                                        onclick="showLargeImage('{{ asset('assets/images/banner/' . $banner->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>

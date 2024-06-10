@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($users as $user)
+                            @foreach ($list as $user)
                                 <tr>
                                     <td>
                                         <input type="checkbox">
@@ -71,7 +71,7 @@
                                                     <i class="mdi mdi-pencil-outline me-1"></i> Chỉnh Sửa
                                                 </a>
                                                 <a class="dropdown-item waves-effect" href="javascript:void(0)"
-                                                    onclick="deletes({{ $user->id }})">
+                                                    onclick="deletes({{ $user->id }}, '{{ $user->name }}')">
                                                     <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
                                                 </a>
                                                 <a class="dropdown-item waves-effect"
@@ -88,7 +88,7 @@
 
                     <!-- Pagination links -->
                     <div class="d-flex justify-content-end">
-                        {{-- {{ $users->links('pagination::bootstrap-4') }} --}}
+                        {{ $list->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -103,8 +103,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa sản phẩm <b class="text-dark">{{ $user->name ?? '' }}</b> vào <b class="text-danger">thùng rác</b> không?
+                    Bạn có chắc chắn muốn xóa thể loại <b class="text-dark"><span id="userName"></span></b> vào <b
+                        class="text-danger">thùng rác</b> không?
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     <form id="deleteForm" action="" method="POST">
@@ -117,9 +119,11 @@
         </div>
     </div>
     <script>
-        function deletes(id) {
+        function deletes(id, name) {
             var form = document.getElementById('deleteForm');
             form.action = '{{ route('admin.user.delete', ['id' => ':id']) }}'.replace(':id', id);
+            var userNameElement = document.getElementById('userName');
+            userNameElement.textContent = name;
             $('#deleteModal').modal('show');
         }
     </script>

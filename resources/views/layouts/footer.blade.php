@@ -1,6 +1,3 @@
-
-
-
 <footer class="footer">
     <div class="mid-footer">
         <div class="container">
@@ -20,26 +17,26 @@
                     </div>
                     <div class="footer-social">
                         <ul class="social">
-                            <li><a href="#" title="Zalo"><img width="32" height="32"
-                                        title="Zalo" class="lazyload loaded"
+                            <li><a href="#" title="Zalo"><img width="32" height="32" title="Zalo"
+                                        class="lazyload loaded"
                                         src="{{ asset('assets/100/487/743/themes/912230/assets/zalo.png?1710378319730') }}"
                                         data-src="{{ asset('assets/100/487/743/themes/912230/assets/zalo.png?1710378319730') }}"
                                         data-was-processed="true"></a>
                             </li>
-                            <li><a href="#" title="Facebook"><img width="32" height="32"
-                                        title="Facebook" class="lazyload loaded"
+                            <li><a href="#" title="Facebook"><img width="32" height="32" title="Facebook"
+                                        class="lazyload loaded"
                                         src="{{ asset('assets/100/487/743/themes/912230/assets/facebook.png?1710378319730') }}"
                                         data-src="{{ asset('assets/100/487/743/themes/912230/assets/facebook.png?1710378319730') }}"
                                         data-was-processed="true"></a>
                             </li>
-                            <li><a href="#" title="Youtube"><img width="32" height="32"
-                                        title="Youtube" class="lazyload loaded"
+                            <li><a href="#" title="Youtube"><img width="32" height="32" title="Youtube"
+                                        class="lazyload loaded"
                                         src="{{ asset('assets/100/487/743/themes/912230/assets/youtube.png?1710378319730') }}"
                                         data-src="{{ asset('assets/100/487/743/themes/912230/assets/youtube.png?1710378319730') }}"
                                         data-was-processed="true"></a>
                             </li>
-                            <li><a href="#" title="Google"><img width="32" height="32"
-                                        title="Google" class="lazyload loaded"
+                            <li><a href="#" title="Google"><img width="32" height="32" title="Google"
+                                        class="lazyload loaded"
                                         src="{{ asset('assets/100/487/743/themes/912230/assets/google.png?1710378319730') }}"
                                         data-src="{{ asset('assets/100/487/743/themes/912230/assets/google.png?1710378319730') }}"
                                         data-was-processed="true"></a>
@@ -55,23 +52,24 @@
                         Thông tin chung
                     </h4>
                     <div class="group-address">
-                      
-                       
+
+
                         <ul>
                             <li><b>Địa chỉ: </b><span>
 
-                                {{ $contacts->address }}
+                                    {{ $contacts->address }}
 
                                 </span></li>
                             <li>
-                                <b>Điện thoại: </b><a title="{{ $contacts->phone }}" href="tel:{{ $contacts->phone }}">{{ $contacts->phone }}</a>
+                                <b>Điện thoại: </b><a title="{{ $contacts->phone }}"
+                                    href="tel:{{ $contacts->phone }}">{{ $contacts->phone }}</a>
                             </li>
                             <li>
                                 <b>Email: </b><a title="{{ $contacts->email }}"
                                     href="mailto:{{ $contacts->email }}">{{ $contacts->email }}</a>
                             </li>
                         </ul>
-                      
+
                     </div>
 
                     <h4 class="title-menu">
@@ -244,7 +242,8 @@
             <div class="row">
 
                 <div class="col-12 col-lg-12">
-                    <span class="copy-right">Bản quyền thuộc về <a href="https://www.facebook.com/Quocduy110204/">{{ ucfirst($contacts->name) }}</a></span>
+                    <span class="copy-right">Bản quyền thuộc về <a
+                            href="https://www.facebook.com/Quocduy110204/">{{ ucfirst($contacts->name) }}</a></span>
                 </div>
 
 
@@ -276,8 +275,8 @@
             <a href="javascript:void(0)">
                 <img width="25" height="25" class="lazyload loaded"
                     src="{{ asset('assets/100/487/743/themes/912230/assets/icon_fixed_2.png?1710378319730') }}"
-                    data-src="{{ asset('assets/100/487/743/themes/912230/assets/icon_fixed_2.png?1710378319730') }}" alt="Danh mục"
-                    data-was-processed="true">
+                    data-src="{{ asset('assets/100/487/743/themes/912230/assets/icon_fixed_2.png?1710378319730') }}"
+                    alt="Danh mục" data-was-processed="true">
                 <span>Danh mục</span>
             </a>
         </li>
@@ -303,8 +302,8 @@
             <a href="lien-he">
                 <img width="25" height="25" class="lazyload loaded"
                     src="{{ asset('assets/100/487/743/themes/912230/assets/icon_fixed_5.png?1710378319730') }}"
-                    data-src="{{ asset('assets/100/487/743/themes/912230/assets/icon_fixed_5.png?1710378319730') }}" alt="Liên hệ"
-                    data-was-processed="true">
+                    data-src="{{ asset('assets/100/487/743/themes/912230/assets/icon_fixed_5.png?1710378319730') }}"
+                    alt="Liên hệ" data-was-processed="true">
                 <span>Liên hệ</span>
             </a>
         </li>
@@ -333,8 +332,8 @@
         <a class="noti-cart-count" href="cart" title="Giỏ hàng"> Giỏ hàng của bạn hiện có <span
                 class="count_item_pr"></span> sản phẩm </a>
         <a title="Đóng" class="cart_btn-close iconclose">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px"
+                y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                 xml:space="preserve">
                 <g>
                     <g>
@@ -428,8 +427,8 @@
                                     <div class="sssssscustom input_number_product">
                                         <button class="btn_num num_1 button button_qty"
                                             onclick="var result = document.getElementById('quantity-detail'); var qtyqv = result.value; if( !isNaN( qtyqv ) &amp;&amp; qtyqv > 1 ) result.value--;return false;">-</button>
-                                        <input type="text" id="quantity-detail" name="quantity"
-                                            value="1" maxlength="2" class="form-control prd_quantity"
+                                        <input type="text" id="quantity-detail" name="quantity" value="1"
+                                            maxlength="2" class="form-control prd_quantity"
                                             onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
                                             onchange="if(this.value == 0)this.value=1;">
                                         <button class="btn_num num_2 button button_qty"
@@ -461,16 +460,20 @@
 </div>
 
 
-<link rel="preload" as="script" href="{{ asset('assets/100/487/743/themes/912230/assets/main.js?1710378319730') }}">
-<link rel="preload" as="script" href="{{ asset('assets/100/487/743/themes/912230/assets/index.js?1710378319730') }}">
+<link rel="preload" as="script"
+    href="{{ asset('assets/100/487/743/themes/912230/assets/main.js?1710378319730') }}">
+<link rel="preload" as="script"
+    href="{{ asset('assets/100/487/743/themes/912230/assets/index.js?1710378319730') }}">
 
 <link rel="preload" as="script"
     href="{{ asset('assets/100/487/743/themes/912230/assets/placeholdertypewriter.js?1710378319730') }}">
-<script src="{{ asset('assets/100/487/743/themes/912230/assets/placeholdertypewriter.js?1710378319730') }}" type="text/javascript">
-</script>
+<script src="{{ asset('assets/100/487/743/themes/912230/assets/placeholdertypewriter.js?1710378319730') }}"
+    type="text/javascript"></script>
 
-<script src="{{ asset('assets/100/487/743/themes/912230/assets/main.js?1710378319730') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/100/487/743/themes/912230/assets/index.js?1710378319730') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/100/487/743/themes/912230/assets/main.js?1710378319730') }}" type="text/javascript">
+</script>
+<script src="{{ asset('assets/100/487/743/themes/912230/assets/index.js?1710378319730') }}" type="text/javascript">
+</script>
 
 <div id="list-favorite" class="d-none">
     <div class="list-favorite-right container" data-type="wishlist">
@@ -677,7 +680,7 @@
     }
     favoriBean.Wishlist.init();
 </script>
-<div id="popupCartModal" class="modal fade" role="dialog">
+
 </div>
 <div style="visibility:hidden; position: absolute; z-index: -1; bottom: 0; left: 0;">
     <svg xmlns="http://www.w3.org/2000/svg">
@@ -1005,8 +1008,8 @@
             Lưu ý với các ứng dụng trả phí bạn cần cài đặt và mua ứng dụng này trên App store Duy Media để sử dụng ngay
         </div>
         <a title="Đóng" class="close-popup-sapo">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px"
+                y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                 xml:space="preserve">
                 <g>
                     <g>
@@ -1032,14 +1035,16 @@
     document.addEventListener('DOMContentLoaded', function() {
         const passwordField = document.getElementById('customer_password');
         const eyeIcon = document.getElementById('eye-icon');
-        
+
         eyeIcon.addEventListener('click', function() {
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
-                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"></path><path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"></path></svg>`;
+                eyeIcon.innerHTML =
+                    `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"></path><path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"></path></svg>`;
             } else {
                 passwordField.type = 'password';
-                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>`;
+                eyeIcon.innerHTML =
+                    `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>`;
             }
         });
     });
@@ -1054,6 +1059,33 @@
     <pre class="project_naptha_text_layer"
         style="left: -100px; top: -100px; height: 1px; width: 1px; overflow: hidden; position: absolute; display: none;">ELIPPE</pre>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Script để cập nhật thông tin sản phẩm khi mở modal và ngăn chặn chuyển action mặc định
+$('.add_to_cart').click(function(event) {
+    event.preventDefault(); // Ngăn chặn chuyển action mặc định của form
+
+    var productId = $(this).data('product-id');
+    var productName = $(this).data('product-name');
+    var productPrice = $(this).data('product-price');
+
+    $('#modal-product-id').val(productId);
+    $('#modal-product-name').text(productName);
+    $('#modal-product-price').text(productPrice);
+
+    $('#popup-cart-mobile').modal('show'); // Hiển thị modal
+});
+
+// Reset thông tin sản phẩm khi đóng modal
+$('#popup-cart-mobile').on('hidden.bs.modal', function () {
+    $('#modal-product-id').val('');
+    $('#modal-product-name').text('');
+    $('#modal-product-price').text('');
+});
+
+</script>
+
 </body>
 
 </html>

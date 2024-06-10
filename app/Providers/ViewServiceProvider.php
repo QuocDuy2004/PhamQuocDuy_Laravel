@@ -93,9 +93,9 @@ class ViewServiceProvider extends ServiceProvider
         view()->share('contacts', Contact::first());
         view()->share('users', User::all());
         view()->share('post', Post::all());
-        view()->share('category', Category::all());
-        view()->share('banners', Banner::first());
-        view()->share('topics', Topic::first());
+        view()->share('categorys', Category::all());
+        view()->share('banners', Banner::all());
+        view()->share('topic', Topic::all());
         view()->share('orderdetails', Orderdetail::first());
         view()->share('brand', Brand::all());
         view()->share('orders', Order::first());

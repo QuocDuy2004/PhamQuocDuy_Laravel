@@ -68,7 +68,7 @@ class AuthClientController extends Controller
 
             Auth::login($user);
 
-            return redirect()->route('home')->with('success', 'Đăng nhập thành công');
+            return redirect()->route('dashbroad')->with('success', 'Đăng nhập thành công');
         } catch (\Exception $e) {
             return redirect()->route('login')->with('error', 'Đăng nhập bằng Facebook thất bại: ' . $e->getMessage());
         }
@@ -111,7 +111,6 @@ class AuthClientController extends Controller
 
     public function Login(Request $request)
     {
-
         $valid = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
@@ -121,12 +120,45 @@ class AuthClientController extends Controller
             return redirect()->back()->withErrors($valid)->withInput();
         } else {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-                return redirect()->route('home')->with('success', 'Đăng nhập thành công');
+
+                $user = Auth::user();
+                if ($user->roles == 'admin') {
+                    Auth::logout();
+                    return redirect()->route('login')->with('error', 'Tài khoản không có quyền truy cập');
+                }
+                return redirect()->route('login')->with('success', 'Đăng ký thành công')->withInput(['username' => $request->username]);
             } else {
                 return redirect()->back()->with('error', 'Sai email hoặc mật khẩu')->withInput(['email' => $request->email]);
             }
         }
     }
+
+    public function LoginAdmin(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8',
+        ]);
+
+        if ($valid->fails()) {
+            return redirect()->back()->withErrors($valid)->withInput();
+        } else {
+            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+
+                $user = Auth::guard('admin')->user();
+                if ($user->roles !== 'admin') {
+                    Auth::guard('admin')->logout();
+                    return redirect()->route('admin.login')->with('error', 'Tài khoản không có quyền truy cập');
+                }
+
+                return redirect()->route('admin.dashboard.index')->with('success', 'Đăng nhập thành công');
+            } else {
+                return redirect()->back()->with('error', 'Sai email hoặc mật khẩu')->withInput(['email' => $request->email]);
+            }
+        }
+    }
+
+
 
     public function register(Request $request)
     {
@@ -173,5 +205,10 @@ class AuthClientController extends Controller
         Session::flush();
         Auth::logout(Auth::user());
         return redirect()->route('login')->with('success', 'Bạn đã đăng xuất thành công.');
+    }
+    public function LogoutAdmin()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login')->with('success', 'Đăng xuất thành công');
     }
 }

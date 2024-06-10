@@ -49,7 +49,7 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('assets/images'), $imageName);
+            $image->move(public_path('assets/images/post/'), $imageName);
         } else {
             $imageName = null; // or handle this case differently if image is required
         }
@@ -78,8 +78,10 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::all();
-        return view('backend.post.show', compact('post'));
+        // Lấy thông tin sản phẩm theo ID
+        $post = Post::find($id);
+        $posts = Post::all();
+        return view('backend.post.show', compact('post','posts'));
     }
 
     /**
@@ -107,7 +109,7 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            $request->image->move(public_path('assets/images/post/'), $imageName);
             $post->image = $imageName;
         }
         $post->save();
@@ -126,9 +128,9 @@ class PostController extends Controller
         if ($post) {
             $post->status = 0;
             $post->save();
-            return redirect()->route('admin.post.index')->with('success', 'Xóa sản phẩm thành công');
+            return redirect()->route('admin.post.index')->with('success', 'Xóa bài viết thành công');
         }
-        return redirect()->route('admin.post.index')->with('error', 'Không tìm thấy sản phẩm');
+        return redirect()->route('admin.post.index')->with('error', 'Không tìm thấy bài viết');
     }
 
     public function trash()
@@ -141,7 +143,7 @@ class PostController extends Controller
         $post = Post::find($id);
         if ($post) {
             $post->delete();
-            return redirect()->route('admin.post.trash')->with('success', 'Xóa thành công');
+            return redirect()->route('admin.post.trash')->with('success', 'Xóa bài viết thành công');
         }
         return redirect()->route('admin.post.trash')->with('error', 'Sản phẩm không tồn tại');
     }
@@ -161,10 +163,10 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            $request->image->move(public_path('assets/images/post/'), $imageName);
             $post->image = $imageName;
         }
         $post->save();
-        return redirect()->route('admin.post.trash')->with('success', 'Khôi phục thành công');
+        return redirect()->route('admin.post.trash')->with('success', 'Khôi phục bài viết thành công');
     }
 }

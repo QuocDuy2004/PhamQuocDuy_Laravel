@@ -1,5 +1,5 @@
 @extends('layouts.appadmin')
-@section('title', 'Thùng rác sản phẩm')
+@section('title', 'Thùng rác Menu')
 
 @section('content')
     <div class="content-wrapper">
@@ -15,14 +15,24 @@
                             đã chọn</button>
                     </div>
                     <div>
-                        <a class="btn btn-info" href="{{ route('admin.product.index') }}">Back</a>
+                        <a class="btn btn-info" href="{{ route('admin.menu.index') }}">Back</a>
                     </div>
                 </h5>
-                @if (session('success'))
-                    <script>
-                        showSuccessMessage('{{ session('success') }}');
-                    </script>
-                @endif
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
                 <div class="table-responsive text-nowrap">
                     <table class="table">
@@ -30,13 +40,13 @@
                             <tr>
                                 <th><input type="checkbox" id="selectAll"></th>
                                 <th>ID</th>
-                                <th class="col-md-2">Hình Ảnh</th>
                                 <th>Tên</th>
-                                <th>Đề Tài</th>
                                 <th>Đường Dẫn</th>
-                                <th>Nội Dung</th>
-                                <th>Giá</th>
-                                <th>Giá Giảm</th>
+                                <th>Sắp Xếp</th>
+                                <th>Danh Mục Cha</th>
+                                <th>Kiểu</th>
+                                <th>Chức Vụ</th>
+                                <th>Mã Bảng</th>
                                 <th>Ngày Tạo</th>
                                 <th>Ngày Cập Nhập</th>
                                 <th>Trạng Thái</th>
@@ -44,24 +54,24 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($product as $products)
+                            @foreach ($menu as $menus)
                                 <tr>
-                                    <td><input type="checkbox" name="selected_ids[]" value="{{ $products->id }}"
+                                    <td><input type="checkbox" name="selected_ids[]" value="{{ $menus->id }}"
                                             class="select-checkbox"></td>
-                                    <td>{{ $products->id }}</td>
+                                    <td>{{ $menus->id }}</td>
                                     <td>
                                         <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                                                 class="avatar avatar-xs pull-up" aria-label="Lilian Fuller"
                                                 data-bs-original-title="Lilian Fuller">
-                                                @if ($products->image == null)
+                                                @if ($menus->image == null)
                                                     <img src="{{ asset('assets/load.gif') }}" alt="gif"
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $products->image) }}"
-                                                        alt="{{ $products->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $products->image) }}')">
+                                                    <img src="{{ asset('assets/images/' . $menus->image) }}"
+                                                        alt="{{ $menus->image }}" class="rounded-circle"
+                                                        onclick="showLargeImage('{{ asset('assets/images/' . $menus->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>
@@ -71,20 +81,20 @@
                                         <button class="close-btn" onclick="hideLargeImage()">Đóng</button>
                                         <img id="largeImage" src="" alt="Không có hình ảnh hoặc lỗi">
                                     </div>
-                                    <td>{{ $products->name }}</td>
-                                    <td>{{ $products->detail }}</td>
-                                    <td>{{ $products->slug }}</td>
-                                    <td>{{ $products->description }}</td>
-                                    <td>{{ $products->price }}</td>
-                                    <td>{{ $products->pricesale }}</td>
-                                    <td>{{ $products->created_at }}</td>
-                                    <td>{{ $products->updated_at }}</td>
+                                    <td>{{ $menus->name }}</td>
+                                    <td>{{ $menus->link }}</td>
+                                    <td>{{ $menus->sort_order }}</td>
+                                    <td>{{ $menus->parent_id }}</td>
+                                    <td>{{ $menus->type }}</td>
+                                    <td>{{ $menus->position }}</td>
+                                    <td>{{ $menus->created_at }}</td>
+                                    <td>{{ $menus->updated_at }}</td>
                                     <td>
-                                        @if ($products->status == 0)
+                                        @if ($menus->status == 0)
                                             <p class="text-danger">Đang ở thùng rác</p>
-                                        @elseif ($products->status == 1)
+                                        @elseif ($menus->status == 1)
                                             <p class="text-success">Hoạt động</p>
-                                        @elseif ($products->status == 2)
+                                        @elseif ($menus->status == 2)
                                             <p class="text-warning">Ngưng hoạt động</p>
                                         @endif
                                     </td>
@@ -96,11 +106,11 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <button type="button" class="dropdown-item waves-effect"
-                                                    onclick="confirmDelete({{ $products->id }})">
+                                                    onclick="confirmDelete({{ $menus->id }})">
                                                     <i class="mdi mdi-trash-can-outline me-1"></i> Xóa vĩnh viễn
                                                 </button>
                                                 <form id="deleteForm"
-                                                    action="{{ route('admin.product.destroy', $products->id) }}"
+                                                    action="{{ route('admin.menu.destroy', $menus->id) }}"
                                                     method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
@@ -109,7 +119,7 @@
                                                     </button>
                                                 </form>
                                                 <form
-                                                    action="{{ route('admin.product.restore', ['id' => $products->id]) }}"
+                                                    action="{{ route('admin.menu.restore', ['id' => $menus->id]) }}"
                                                     method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <button type="submit" class="dropdown-item waves-effect">
@@ -132,11 +142,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa Menu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa sản phẩm <b class="text-dark">{{ $products->name }}</b> <b class="text-danger">vĩnh viễn</b> không?
+                    Bạn có chắc chắn muốn xóa Menu <b class="text-dark">{{ $menus->name }}</b> <b class="text-danger">vĩnh viễn</b> không?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -146,9 +156,9 @@
         </div>
     </div>
     <script>
-        function confirmDelete(productId) {
+        function confirmDelete(menuId) {
             var form = document.getElementById('deleteForm');
-            form.action = '{{ route('admin.product.destroy', '') }}' + '/' + productId;
+            form.action = '{{ route('admin.menu.destroy', '') }}' + '/' + menuId;
             $('#deleteModal').modal('show');
         }
     </script>

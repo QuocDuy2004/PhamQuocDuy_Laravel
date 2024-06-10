@@ -49,15 +49,19 @@
                                             </ul>
                                             <h1 class="title_heads a-center"><span>Đăng ký</span></h1>
                                             <div id="login" class="section">
-                                            @if (Session::has('error'))
-                                                <div class="alert alert-danger" role="alert">
-                                                    {{ Session::get('error') }}
+                                                @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
                                                 </div>
                                             @endif
-                                            
-                                            @if (Session::has('success'))
-                                                <div class="alert alert-success" role="alert">
-                                                    {{ Session::get('success') }}
+                
+                                            @if (session('success'))
+                                                <div class="alert alert-success">
+                                                    {{ session('success') }}
                                                 </div>
                                             @endif
                                             <form method="post" action="{{ route('register.post') }}">

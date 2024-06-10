@@ -55,7 +55,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('assets/images'), $imageName);
+            $image->move(public_path('assets/images/product/'), $imageName);
         } else {
             $imageName = null;
         }
@@ -123,13 +123,13 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            $request->image->move(public_path('assets/images/product/'), $imageName);
             $product->image = $imageName;
         }
 
         $product->save();
 
-        return redirect()->route('admin.product.index')->with('success', 'Cập nhập thành công');
+        return redirect()->route('admin.product.index')->with('success', 'Cập nhập sản phẩm thành công');
     }
 
     /**
@@ -160,7 +160,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         if ($product) {
             $product->delete();
-            return redirect()->route('admin.product.trash')->with('success', 'Xóa thành công');
+            return redirect()->route('admin.product.trash')->with('success', 'Xóa sản phẩm thành công');
         }
         return redirect()->route('admin.product.trash')->with('error', 'Sản phẩm không tồn tại');
     }
@@ -182,10 +182,10 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            $request->image->move(public_path('assets/images/product/'), $imageName);
             $product->image = $imageName;
         }
         $product->save();
-        return redirect()->route('admin.product.trash')->with('success', 'Khôi phục thành công');
+        return redirect()->route('admin.product.trash')->with('success', 'Khôi phục sản phẩm thành công');
     }
 }

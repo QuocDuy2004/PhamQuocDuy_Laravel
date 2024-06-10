@@ -2,41 +2,39 @@
 @section('title', 'Quản lý liên hệ')
 
 @section('content')
-
-
-
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
+            <h4 class="py-3 mb-4"><span class="text-muted fw-light">@yield('title')</span></h4>
 
-            <h4 class="py-3 mb-4"><span class="text-muted fw-light">@yield('title')</span>
-            </h4>
-
-            <!-- Basic Bootstrap Table -->
             <div class="card">
                 <h5 class="card-header">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <a class="btn btn-success me-2" href="{{ route('admin.contact.create') }}">Create</a>
-                        <a class="btn btn-danger" href="{{ route('admin.contact.trash') }}">Trash</a>
+                        <a class="btn btn-success me-2" href="{{ route('admin.contact.create') }}">Tạo liên hệ</a>
+                        <a class="btn btn-danger" href="{{ route('admin.contact.trash') }}">Thùng Rác</a>
                     </div>
                 </h5>
                 @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
@@ -70,19 +68,15 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item waves-effect"
                                                     href="{{ route('admin.contact.edit', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-pencil-outline me-1"></i> Edit
+                                                    <i class="mdi mdi-pencil-outline me-1"></i> Chỉnh sửa
                                                 </a>
                                                 <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.contact.delete', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Delete
+                                                    href="javascript:void(0);" onclick="deletes({{ $contact->id }}, '{{ $contact->name }}')">
+                                                    <i class="mdi mdi-trash-can-outline me-1"></i> Xóa
                                                 </a>
                                                 <a class="dropdown-item waves-effect"
                                                     href="{{ route('admin.contact.show', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-eye"></i> Show
-                                                </a>
-                                                <a class="dropdown-item waves-effect"
-                                                    href="{{ route('admin.contact.update', ['id' => $contact->id]) }}">
-                                                    <i class="mdi mdi-update"></i> Update
+                                                    <i class="mdi mdi-eye"></i> Xem
                                                 </a>
                                             </div>
                                         </div>
@@ -91,8 +85,47 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
 
+                    <!-- Pagination links -->
+                    <div class="d-flex justify-content-end">
+                        {{ $list->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
             </div>
         </div>
-    @endsection
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa liên hệ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa liên hệ <b class="text-dark"><span id="contactName"></span></b> vào <b
+                        class="text-danger">thùng rác</b> không?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <form id="deleteForm" action="" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Đồng Ý</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function deletes(id, name) {
+            var form = document.getElementById('deleteForm');
+            form.action = '{{ route('admin.contact.delete', ['id' => ':id']) }}'.replace(':id', id);
+            var contactNameElement = document.getElementById('contactName');
+            contactNameElement.textContent = name;
+            $('#deleteModal').modal('show');
+        }
+    </script>
+@endsection

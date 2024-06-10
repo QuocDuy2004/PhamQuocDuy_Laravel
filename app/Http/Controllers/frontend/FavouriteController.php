@@ -9,6 +9,7 @@ class FavouriteController extends Controller
 {
     public function Favourite()
     {
-        return view('frontend.favourite');
+        $favourite = Auth('customer')->user()->favourite ? Auth('customer')->user()->favourite : [];
+        return view('frontend.favourite',compact('favourite'));
     }
 }

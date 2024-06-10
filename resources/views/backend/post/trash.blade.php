@@ -18,11 +18,21 @@
                         <a class="btn btn-info" href="{{ route('admin.post.index') }}">Back</a>
                     </div>
                 </h5>
-                @if (session('success'))
-                    <script>
-                        showSuccessMessage('{{ session('success') }}');
-                    </script>
-                @endif
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
                 <div class="table-responsive text-nowrap">
                     <table class="table">
@@ -56,9 +66,9 @@
                                                         class="rounded-circle"
                                                         onclick="showLargeImage('{{ asset('assets/load.gif') }}')">
                                                 @else
-                                                    <img src="{{ asset('assets/images/' . $posts->image) }}"
+                                                    <img src="{{ asset('assets/images/post/' . $posts->image) }}"
                                                         alt="{{ $posts->image }}" class="rounded-circle"
-                                                        onclick="showLargeImage('{{ asset('assets/images/' . $posts->image) }}')">
+                                                        onclick="showLargeImage('{{ asset('assets/images/post/' . $posts->image) }}')">
                                                 @endif
                                             </li>
                                         </ul>
@@ -128,11 +138,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa bài viết</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa sản phẩm <b class="text-dark" id="postTitle"></b> vào <b
+                    Bạn có chắc chắn muốn xóa bài viết <b class="text-dark" id="postTitle"></b> vào <b
                         class="text-danger">thùng rác</b> không?
                 </div>
                 <div class="modal-footer">

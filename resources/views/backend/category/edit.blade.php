@@ -1,5 +1,5 @@
 @extends('layouts.appadmin')
-@section('title', 'Chỉnh sửa thể loại')
+@section('title', 'Chỉnh sửa danh mục')
 
 @section('content')
 
@@ -26,8 +26,8 @@
 
                                 <div class="form-floating form-floating-outline mb-4">
                                     <input type="text" class="form-control" value="{{ $category->name }}" id="name"
-                                        name="name" placeholder="Vui lòng điền tên của thể loại">
-                                    <label for="name">Tên thể loại</label>
+                                        name="name" placeholder="Vui lòng điền tên của danh mục">
+                                    <label for="name">Tên danh mục</label>
                                 </div>
                                 <div class="form-floating form-floating-outline mb-4">
                                     <select class="form-control" name="parent_id" id="parent_id">
@@ -45,18 +45,18 @@
                                 </div>
                                 <div class="form-floating form-floating-outline mb-4">
                                     <input type="text" class="form-control" value="{{ $category->slug }}" id="slug"
-                                        name="slug" placeholder="Vui lòng điền đường dẫn của thể loại">
-                                    <label for="slug">Đường dẫn thể loại</label>
+                                        name="slug" placeholder="Vui lòng điền đường dẫn của danh mục">
+                                    <label for="slug">Đường dẫn danh mục</label>
                                 </div>
                                 <div class="form-floating form-floating-outline mb-4">
                                     <input type="text" class="form-control" value="{{ $category->description }}"
-                                        id="description" name="description" placeholder="Vui lòng điền mô tả của thể loại">
-                                    <label for="description">Mô tả thể loại</label>
+                                        id="description" name="description" placeholder="Vui lòng điền mô tả của danh mục">
+                                    <label for="description">Mô tả danh mục</label>
                                 </div>
                                 <div class="form-floating form-floating-outline mb-4">
                                     <input type="file" class="form-control" id="image" name="image"
-                                        placeholder="Vui lòng điền ảnh của thể loại">
-                                    <label for="image">Hình ảnh thể loại</label>
+                                        placeholder="Vui lòng điền ảnh của danh mục">
+                                    <label for="image">Hình ảnh danh mục</label>
                                 </div>  
                                 <div class="form-floating form-floating-outline mb-4">
                                     <select class="form-control" name="status" id="status">

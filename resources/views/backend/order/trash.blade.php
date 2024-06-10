@@ -18,11 +18,21 @@
                         <a class="btn btn-info" href="{{ route('admin.order.index') }}">Back</a>
                     </div>
                 </h5>
-                @if (session('success'))
-                    <script>
-                        showSuccessMessage('{{ session('success') }}');
-                    </script>
-                @endif
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
                 <div class="table-responsive text-nowrap">
                     <table class="table">
@@ -122,7 +132,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa sản phẩm <b class="text-dark"><span id="orderName"></span></b> <b
+                    Bạn có chắc chắn muốn xóa đơn hàng <b class="text-dark"><span id="orderName"></span></b> <b
                         class="text-danger">vĩnh viễn</b> không?
                 </div>
                 <div class="modal-footer">
